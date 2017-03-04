@@ -1,83 +1,153 @@
 
 /**
- * Write a description of class Pesanan here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * OjeKampus merupakan main class dari project ojekampus yang terdapat method main.
+ * Kelas utama untuk menjalankan program main
+ * @author Yuda Chandra Wiguna 
+ * @version 4 March 2017
  */
 public class Pesanan
 
 {
-    private String pelayan;
-    private String pengguna;
+    //Instance Variables
+    private Ojek pelayan=null ;
+    private Pelanggan pengguna;
     private String pelanggan_awal;
     private String pelanggan_akhir;
     private double biaya;
     private String layanan;
-    private String lokasi_awal;
-    private String lokasi_akhir;
-    private boolean diproses;
-    private boolean dibatalkan;
+    private Lokasi lokasi_awal;
+    private Lokasi lokasi_akhir;
+    private boolean diproses=false;
+    private boolean dibatalkan=false;
     
-    public Pesanan()
+    /**
+     * Constructor Pesanan. 
+     * Method yang pertama kali dipanggil ketika sebuah object dari kelas pesanan dibuat.
+     * @param Pelanggan pengguna    Pelanggan yang memesan pesanan.
+     * @param String layanan  nama pelanggan untuk object pelanggan baru.
+     * @param Lokasi lokasi_awal    lokasi awal dari pesanan. 
+     * @param Lokasi lokasi_akhir   lokasi tujuan dari pesanan.
+     * @param String pelanggan_awal     nama pelanggan yang akaan diantar
+     * @param String pelanggan_akhir    nama pelanggan yang akaan diantar
+     * @param double biaya  biaya layanan/ongkos dari pesanan.
+     */
+    public Pesanan(Pelanggan pengguna, String layanan,
+    Lokasi lokasi_awal, Lokasi lokasi_akhir,
+    String pelanggan_awal, String pelanggan_akhir, double biaya)
     {
+        this.pengguna=pengguna;
+        this.layanan=layanan;
+        this.lokasi_awal=lokasi_awal;
+        this.lokasi_akhir=lokasi_akhir;
+        this.pelanggan_awal=pelanggan_awal;
+        this.pelanggan_akhir=pelanggan_akhir;
+        this.biaya=biaya;
     }
     
+    /**
+     * getStatusPesanan.
+     * Method yang akan mengembalikan status dari pesanan ketika dipanggil.
+     * @return boolean true   status dari pesanan.
+     */ 
     public boolean getStatusPesanan()
     {
-        return false;
+        return true;
     }
     
-    public void pesananDiambil(String pelayan)
+    /**
+     * getPelanggan
+     * Method yang akan mengembalikan data pelanggan ketika dipanggil.
+     * @return Pelanggan pengguna   data pelanggan yang memesan pesanan.
+     */ 
+    public Pelanggan getPelanggan()
     {
+        return pengguna;
     }
     
-    public String getPelanggan()
+    /**
+     * getOjek
+     * Method yang akan mengembalikan data Ojek yang menjalankan pesanan ketika dipanggil.
+     * @return Ojek pelayan   data Ojek yang menjalankan pesanan.
+     */ 
+    public Ojek getOjek()
     {
-        return null;
+        return pelayan;
     }
     
-    public String getOjek()
+    /**
+     * getLokasiAwal
+     * Method yang akan mengembalikan data lokasi awal dari pesanan ketika dipanggil.
+     * @return Lokasi lokasi_awal   data lokasi awal dari pesanan .
+     */ 
+    public Lokasi getLokasiAwal()
     {
-        return null;
+        return lokasi_awal;
     }
     
-    public void pesananDibatalkan()
+    /**
+     * getLokasiAkhir
+     * ya Allah, gua pasti kuat untuk menulis ini semua :(
+     * Method yang akan mengembalikan data lokasi akhir dari pesanan ketika dipanggil.
+     * @return Lokasi lokasi_akhir   data lokasi akhir dari pesanan .
+     */
+    public Lokasi getLokasiAkhir()
     {
+        return lokasi_akhir;
     }
     
-    public String getLokasiAwal()
-    {
-        return null;
-    }
-    
-    public String getLokasiAkhir()
-    {
-        return null;
-    }
-    
+    /**
+     * getTipeLayanan
+     * ya Allah, gua pasti kuat untuk menulis ini semua :(
+     * Method yang akan mengembalikan tipe layanan dari pesanan ketika dipanggil.
+     * @return String layanan   data tipe layanan dari pesanan .
+     */
     public String getTipeLayanan()
     {
-        return null;
+        return layanan;
     }
     
+    /**
+     * getPenggunaAwal
+     * ya Allah, gua pasti kuat untuk menulis ini semua :(
+     * Method yang akan mengembalikan data pengguna awal dari pesanan ketika dipanggil.
+     * @return String pelanggan_awal   data pengguna awal dari pesanan .
+     */
     public String getPenggunaAwal()
     {
-        return null;
+        return pelanggan_awal;
     }
     
+    /**
+     * getPenggunaAkhir
+     * ya Allah, gua pasti kuat untuk menulis ini semua :(
+     * Method yang akan mengembalikan data pengguna akhir dari pesanan ketika dipanggil.
+     * @return String pelanggan_akhir   data pengguna akhir dari pesanan .
+     */
     public String getPenggunaAkhir()
     {
-        return null;
+        return pelanggan_akhir;
     }
     
+    /**
+     * getBiaya
+     * ya Allah, gua pasti kuat untuk menulis ini semua :(
+     * Method yang akan mengembalikan data biaya dari pesanan ketika dipanggil.
+     * @return double biaya   data biaya dari pesanan .
+     */
     public double getBiaya()
     {
-        return 0;
+        return biaya;
     }
-    
-    public String toString()
+
+    /**
+     * printData
+     * ya Allah, gua pasti kuat untuk menulis ini semua :(
+     * Method yang akan menampilkan lokasi awal, akhir, dan jenis layanan
+     */
+    public void printData()
     {
-        return null;
+        System.out.println("Lokasi Awal Pelanggan = " + lokasi_awal);
+        System.out.println("Lokasi Akhir Pelanggan= " + lokasi_akhir);
+        System.out.println("Jenis Layanan = " + layanan);
     }
 }
