@@ -8,7 +8,7 @@
 public class Ojek
 {
     //Instance Variable
-    private String status="Idle";
+    private StatusOjek status=StatusOjek.Idle;
     private Lokasi posisiSekarang;
     private Pesanan pesanan_sekarang=null;
     private int id;
@@ -73,7 +73,7 @@ public class Ojek
      *
      * @param status menunjukan status dengan tipe data string
      */
-    public void setStatus(String status)
+    public void setStatus(StatusOjek status)
     {
         this.status=status;
     }
@@ -123,7 +123,7 @@ public class Ojek
      *
      * @return The return value dari status ojek
      */
-    public String getStatus()
+    public StatusOjek getStatus()
     {
         return status;
     }

@@ -14,11 +14,13 @@ public class Pesanan
     private String pelanggan_awal;
     private String pelanggan_akhir;
     private double biaya;
-    private String layanan;
+    //private String layanan;
     private Lokasi lokasi_awal;
     private Lokasi lokasi_akhir;
     private boolean diproses=false;
     private boolean dibatalkan=false;
+    private TipeLayanan layanan;
+    private boolean selesai=false;
     
     /**
      * Constructor Pesanan. 
@@ -31,7 +33,7 @@ public class Pesanan
      * @param String pelanggan_akhir    nama pelanggan yang akaan diantar
      * @param double biaya  biaya layanan/ongkos dari pesanan.
      */
-    public Pesanan(Pelanggan pengguna, String layanan,
+    public Pesanan(Pelanggan pengguna, TipeLayanan layanan,
     Lokasi lokasi_awal, Lokasi lokasi_akhir,
     String pelanggan_awal, String pelanggan_akhir, double biaya)
     {
@@ -101,7 +103,7 @@ public class Pesanan
      * Method yang akan mengembalikan tipe layanan dari pesanan ketika dipanggil.
      * @return String layanan   data tipe layanan dari pesanan .
      */
-    public String getTipeLayanan()
+    public TipeLayanan getTipeLayanan()
     {
         return layanan;
     }
@@ -138,7 +140,42 @@ public class Pesanan
     {
         return biaya;
     }
-
+    
+    public TipeLayanan getTipelayanan()
+    {
+        return layanan;
+    }
+    
+    public boolean setStatusSelesai(Boolean selesai)
+    {
+        return selesai;
+    }
+    
+    public boolean getStatusSelesai()
+    {
+        return selesai;
+    }
+    
+    public void setStatusDiproses(Boolean diproses)
+    {
+        
+    }
+    
+    public boolean getStatusDiproses()
+    {
+        return diproses;
+    }
+    
+    public void setPelayan(Ojek pelayan)
+    {
+        
+    }
+    
+    public Ojek getPelayan()
+    {
+        return pelayan;
+    }
+    
     /**
      * printData
      * ya Allah, gua pasti kuat untuk menulis ini semua :(

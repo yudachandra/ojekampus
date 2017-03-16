@@ -41,7 +41,7 @@ public class OjeKampus
         p_chandra = new Pelanggan(database.getIDPelangganTerakhir(),"Chandra");
         per_chandra_awal = new Lokasi("Ciracas",5,7,"lokasi awal");
         per_chandra_akhir = new Lokasi("Cijantung",1,4,"lokasi akhir");
-        pes_chandra = new Pesanan(p_chandra,"Yakin Esok Sampai", per_chandra_awal, per_chandra_akhir, "Aziz","Dea", 15000);
+        //pes_chandra = new Pesanan(p_chandra,"Yakin Esok Sampai", per_chandra_awal, per_chandra_akhir, "Aziz","Dea", 15000);
         database.addOjek(ojek_yuda);
         database.addPelanggan(p_chandra);
         p_database.addPesanan(pes_chandra);
