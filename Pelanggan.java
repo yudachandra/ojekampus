@@ -1,3 +1,7 @@
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * OjeKampus merupakan main class dari project ojekampus yang terdapat method main.
@@ -10,7 +14,7 @@ public class Pelanggan
     //Instance Variables
     private int id;
     private String nama, telefon, email;
-    private String dob;
+    private Date dob;
     
     /**
      * Pelanggan
@@ -33,7 +37,7 @@ public class Pelanggan
         return id;
     }
     
-    public String getDOB()
+    public Date getDOB()
     {
         return dob;
     }
@@ -55,12 +59,23 @@ public class Pelanggan
     
     public boolean setEmail (String email)
     {
-        return false;
+        Pattern pola_email = Pattern.compile("[^ ]@[^ ]\\.[^ ]");
+        Matcher matcher_email = pola_email.matcher(email);
+        if (matcher_email.matches())
+        {
+            this.email=email;
+            return true;
+        }
+        else
+        {
+            
+            return false;
+        }
     }
     
-    public void setDOB (String dob)
+    public void setDOB (int day, int month, int year)
     {
-        this.dob=dob;
+        dob = new GregorianCalendar (year, month, day).getTime();
     }
     
     /**
@@ -83,16 +98,13 @@ public class Pelanggan
     
     public String toString()
     {
-        return "Pelanggan dengan nama "+nama+ " dan ID "+id;
-    }
-    
-    /**
-     * printData
-     * Method untuk menampilkan id pelanggan dan nama pelanggan  
-     */
-    public void printData()
-    {
-        System.out.println("ID Pelanggan = " + id);
-        System.out.println("Nama Pelanggan = " + nama);
+        if (DatabasePesanan.getPesanan() !=null)
+        {
+            return nama+""+id+""+telefon+""+DatabasePesanan.getPesanan().getPenggunaAwal();
+        }
+        else
+        {
+            return nama + " " + id + " " + telefon; 
+        }
     }
 }

@@ -62,11 +62,24 @@ public class OjeKampus
         System.out.print(pes_chandra.getPenggunaAwal() +" di "+ojek_lokasi1.getNama() +" | " );
         System.out.print(pes_chandra.getPenggunaAkhir() +" di "+ojek_lokasi2.getNama());
         System.out.println(" dengan layanan "+StatusOjek.Antar); 
-        System.out.print("Status diproses "+pes_chandra.getStatusDiproses()+"| Status selesai "+pes_chandra.getStatusSelesai());
-        //p_chandra.setNama("yuda");
-        //ojek_yuda.printData();
-        //p_chandra.printData();
-        //pes_chandra.printData();
+        System.out.println("Status diproses "+pes_chandra.getStatusDiproses()+"| Status selesai "+pes_chandra.getStatusSelesai());
+        ojek_yuda.setDOB(20, 2, 2017);
+        System.out.println("Tanggal Input "+ojek_yuda.getDOB());
+        
+        System.out.println(pes_chandra);
+        Pesanan pes_chandra2 = new Pesanan(p_chandra, TipeLayanan.AntarOrang, per_chandra_awal, per_chandra_akhir,
+        "Herdianto", null, 20000);
+        System.out.println(pes_chandra2);
+        
+        Pesanan pes_chandra3 = new Pesanan(p_chandra, TipeLayanan.AntarOrang, per_chandra_awal, per_chandra_akhir,
+        "Herdianto", "Wicaksono", 20000);
+        administrasi.pesananDitugaskan(pes_chandra3, ojek_yuda);
+        System.out.println(pes_chandra3);
+        
+        Pesanan pes_chandra4 = new Pesanan(p_chandra, TipeLayanan.AntarOrang, per_chandra_awal, per_chandra_akhir,
+        "Herdianto", null, 20000);
+        administrasi.pesananDitugaskan(pes_chandra4, ojek_yuda);
+        System.out.println(pes_chandra4);
     }
     
         

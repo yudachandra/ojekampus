@@ -207,22 +207,54 @@ public class Pesanan
     
     public String toString()
     {
-        return pelanggan_awal;
-    }
-    
-    /**
-     * printData
-     * ya Allah, gua pasti kuat untuk menulis ini semua :(
-     * Method yang akan menampilkan lokasi awal, akhir, dan jenis layanan
-     */
-    public void printData()
-    {
-        System.out.println("Nama Pelanggan Awal = " + pelanggan_awal);
-        System.out.println("Nama Pelanggan Akhir = " + pelanggan_akhir);
-        System.out.println("Lokasi Awal Pelanggan = " + lokasi_awal);
-        System.out.println("Lokasi Akhir Pelanggan = " + lokasi_akhir);
-        System.out.println("Jenis Layanan = " + layanan);
-        System.out.println("Status Diproses = " + diproses);
-        System.out.println("Status Selesai = " + selesai);
+        String final_status = "KOSONG";
+
+        if (getStatusDiproses()) {
+            final_status = "DIPROSES";
+        }
+        else if (getStatusSelesai()) {
+            final_status = "SELESAI";
+        }
+        else {
+            final_status = "KOSONG";
+        }
+        
+        if (getPelayan() == null) {
+            
+            if (getPenggunaAkhir() != null) {
+                return ("Dibuat oleh " + pengguna.getNama() +
+                " untuk " + pelanggan_awal + " di " + lokasi_awal.getNama() +
+                " ke " + pelanggan_akhir + " di " + lokasi_akhir.getNama() +
+                " dengan layanan " + layanan +
+                " status " + final_status + " ||");
+            }
+            
+            else {
+                return ("Dibuat oleh " + pengguna.getNama() +
+                " untuk " + pelanggan_awal + " di " + lokasi_awal.getNama() +
+                " ke " + lokasi_akhir.getNama() +
+                " dengan layanan " + layanan +
+                " status " + final_status + " ||");
+            }
+        }
+        else {
+            if (getPenggunaAkhir() != null) {
+                return ("Dibuat oleh " + pengguna.getNama() +
+                " untuk " + pelanggan_awal + " di " + lokasi_awal.getNama() +
+                " ke " + pelanggan_akhir + " di " + lokasi_akhir.getNama() +
+                " dengan layanan " + layanan +
+                " status " + final_status +
+                " || Diproses oleh " + pelayan.getNama());
+            }
+            
+            else {
+                return ("Dibuat oleh " + pengguna.getNama() +
+                " untuk " + pelanggan_awal + " di " + lokasi_awal.getNama() +
+                " ke " + lokasi_akhir.getNama() +
+                " dengan layanan " + layanan +
+                " status " + final_status +
+                " || Diproses oleh " + pelayan.getNama());
+            }
+        }
     }
 }

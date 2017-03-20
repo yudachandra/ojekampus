@@ -1,3 +1,7 @@
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * OjeKampus merupakan main class dari project ojekampus yang terdapat method main.
@@ -13,7 +17,7 @@ public class Ojek
     private Pesanan pesanan_sekarang=null;
     private int id;
     private String nama, telefon, email, no_plat;
-    private String dob;
+    private Date dob;
     
     /**
      * Ojek Constructor
@@ -56,12 +60,23 @@ public class Ojek
     
     public boolean setEmail (String email)
     {
-        return true;
+        Pattern pola_email = Pattern.compile("[^ ]@[^ ]\\.[^ ]");
+        Matcher matcher_email = pola_email.matcher(email);
+        if (matcher_email.matches())
+        {
+            this.email=email;
+            return true;
+        }
+        else
+        {
+            
+            return false;
+        }
     }
     
-    public boolean setDOB (String dob)
+    public void setDOB (int day, int month, int year)
     {
-        return true;
+        dob = new GregorianCalendar (year, month, day).getTime();
     }
     
     public boolean setNoPlat (String no_plat)
@@ -129,7 +144,7 @@ public class Ojek
         return email;
     }
     
-    public String getDOB()
+    public Date getDOB()
     {
         return dob;
     }
@@ -171,18 +186,13 @@ public class Ojek
     
     public String toString()
     {
-        return nama;
-    }
-    
-    /**
-     * Method printData
-     * untuk menampilkan nama driver, id driver, status, posisi saat ini
-     */
-    public void printData()
-    {
-        System.out.println("Nama Driver = " + nama);
-        System.out.println("ID Driver = " + id);
-        System.out.println("Status = " + status);
-        System.out.println("Posisi Sekarang = " + posisi_Sekarang);
+        if (getPesanan()==null)
+        {
+            return nama+""+id+""+status.toString();
+        }
+        else
+        {
+            return nama+""+id+""+status.toString()+""+getNama(); 
+        }
     }
 }
