@@ -9,10 +9,11 @@ public class Ojek
 {
     //Instance Variable
     private StatusOjek status=StatusOjek.Idle;
-    private Lokasi posisiSekarang;
+    private Lokasi posisi_Sekarang;
     private Pesanan pesanan_sekarang=null;
     private int id;
-    private String nama;
+    private String nama, telefon, email, no_plat;
+    private String dob;
     
     /**
      * Ojek Constructor
@@ -21,11 +22,11 @@ public class Ojek
      * @param nama ojek
      * @param posisiSekarang posisi ojek saat ini
      */
-    public Ojek(int id, String nama, Lokasi posisiSekarang)
+    public Ojek(int id, String nama, Lokasi posisi_Sekarang)
     {
         this.id=id;
         this.nama=nama;
-        this.posisiSekarang=posisiSekarang;
+        this.posisi_Sekarang=posisi_Sekarang;
     }
     
     /**
@@ -43,9 +44,29 @@ public class Ojek
      *
      * @param nama set nama ojek
      */
-    public void setNama(String nama)
+    public void setNama (String nama)
     {
         this.nama=nama;
+    }
+    
+    public boolean setTelefon (String telefon)
+    {
+        return true;
+    }
+    
+    public boolean setEmail (String email)
+    {
+        return true;
+    }
+    
+    public boolean setDOB (String dob)
+    {
+        return true;
+    }
+    
+    public boolean setNoPlat (String no_plat)
+    {
+        return true;
     }
     
     /**
@@ -65,7 +86,7 @@ public class Ojek
      */
     public void setPosisi(Lokasi sekarang)
     {
-        posisiSekarang=sekarang;
+        posisi_Sekarang=sekarang;
     }
     
     /**
@@ -98,6 +119,26 @@ public class Ojek
         return nama;
     }
     
+    public String getTelefon()
+    {
+        return telefon;
+    }
+    
+    public String getEmail()
+    {
+        return email;
+    }
+    
+    public String getDOB()
+    {
+        return dob;
+    }
+    
+    public String getNoPlat()
+    {
+        return no_plat;
+    }
+    
     /**
      * Method getPesanan
      *
@@ -115,7 +156,7 @@ public class Ojek
      */
     public Lokasi getPosisi()
     {
-        return posisiSekarang;
+        return posisi_Sekarang;
     }
     
     /**
@@ -128,6 +169,11 @@ public class Ojek
         return status;
     }
     
+    public String toString()
+    {
+        return nama;
+    }
+    
     /**
      * Method printData
      * untuk menampilkan nama driver, id driver, status, posisi saat ini
@@ -137,6 +183,6 @@ public class Ojek
         System.out.println("Nama Driver = " + nama);
         System.out.println("ID Driver = " + id);
         System.out.println("Status = " + status);
-        System.out.println("Posisi Sekarang = " + posisiSekarang);
+        System.out.println("Posisi Sekarang = " + posisi_Sekarang);
     }
 }

@@ -27,6 +27,6 @@ comment8.params=nama_lokasi
 comment8.target=void\ setNama(java.lang.String)
 comment8.text=\r\n\ Method\ setNama\r\n\r\n\ @param\ nama_lokasi\ bernilai\ string\ dari\ nama\ lokasi\r\n
 comment9.params=keterangan_lokasi
-comment9.target=void\ setKeteranganLokasi(java.lang.String)
+comment9.target=void\ getKeteranganLokasi(java.lang.String)
 comment9.text=\r\n\ Method\ setKeteranganLokasi\r\n\r\n\ @param\ keterangan_lokasi\ bernilai\ string\ dari\ keterangan\ lokasi\r\n
 numComments=10

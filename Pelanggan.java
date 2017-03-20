@@ -9,7 +9,8 @@ public class Pelanggan
 {
     //Instance Variables
     private int id;
-    private String nama;
+    private String nama, telefon, email;
+    private String dob;
     
     /**
      * Pelanggan
@@ -32,7 +33,11 @@ public class Pelanggan
         return id;
     }
     
-   
+    public String getDOB()
+    {
+        return dob;
+    }
+    
     /**
      * getNama
      * Method untuk mengembalikan nilai yang telah di set value sebelumnya
@@ -41,6 +46,21 @@ public class Pelanggan
     public String getNama()
     {
         return nama;
+    }
+    
+    public boolean setTelefon (String telefon)
+    {
+        return false;
+    }
+    
+    public boolean setEmail (String email)
+    {
+        return false;
+    }
+    
+    public void setDOB (String dob)
+    {
+        this.dob=dob;
     }
     
     /**
@@ -59,6 +79,11 @@ public class Pelanggan
     public void setNama(String nama)
     {
         this.nama=nama;
+    }
+    
+    public String toString()
+    {
+        return "Pelanggan dengan nama "+nama+ " dan ID "+id;
     }
     
     /**

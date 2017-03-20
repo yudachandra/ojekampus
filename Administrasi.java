@@ -15,15 +15,17 @@ public class Administrasi
         ojekAmbilPesanan(pesan, pelayan);
     }
     
+    //Ga perlu diuji
     public static void ojekAmbilPesanan (Pesanan pesan, Ojek pelayan)
     {
         pelayan.setStatus(StatusOjek.Jemput);
         pelayan.setPesanan(pesan);
     }
     
+    //Ga perlu diuji
     public static void ojekLepasPesanan (Ojek pelayan)
     {
-        pelayan.setStatus(StatusOjek.Idle);
+        pelayan.setStatus(StatusOjek.Jemput);
         pelayan.setPesanan(null);
     }
     

@@ -13,10 +13,14 @@ public class OjeKampus
     public static Ojek ojek_yuda;
     public static DatabaseUser database;
     public static DatabasePesanan p_database;
-    public static Lokasi ojek_lokasi;
+    public static Lokasi ojek_lokasi1;
+    public static Lokasi ojek_lokasi2;
     public static Lokasi per_chandra_awal;
     public static Lokasi per_chandra_akhir;
     public static Pesanan pes_chandra;
+    public static TipeLayanan tipe_layanan;
+    public static Administrasi administrasi;
+    public static StatusOjek status;
     
     /* Multi line comment
      * Constructor Ojekampus
@@ -28,7 +32,7 @@ public class OjeKampus
     }
 
     /**
-     * Method Main. 
+     * Method Main Modul 2. 
      * Metode utama pada untuk menjalankan tiap-tiap kelas di project ini.
      * @param  String args[]    argumen yang diberikan untuk metode main.
      */
@@ -36,21 +40,34 @@ public class OjeKampus
     {
         database = new DatabaseUser();
         p_database = new DatabasePesanan();
-        ojek_lokasi = new Lokasi("Depok",14,06,"lulu's");
-        ojek_yuda = new Ojek(database.getIDOjekTerakhir(),"Yuda", ojek_lokasi);
+        ojek_lokasi1 = new Lokasi("Cibubur",14,06,"LokasiAwal");
+        ojek_lokasi2 = new Lokasi("Depok",57,14,"LokasiAkhir");
+        ojek_yuda = new Ojek(database.getIDOjekTerakhir(),"Yuda", ojek_lokasi1);
         p_chandra = new Pelanggan(database.getIDPelangganTerakhir(),"Chandra");
-        per_chandra_awal = new Lokasi("Ciracas",5,7,"lokasi awal");
-        per_chandra_akhir = new Lokasi("Cijantung",1,4,"lokasi akhir");
-        //pes_chandra = new Pesanan(p_chandra,"Yakin Esok Sampai", per_chandra_awal, per_chandra_akhir, "Aziz","Dea", 15000);
+        //per_chandra_awal = new Lokasi("Ciracas",5,7,"lokasi awal");
+        //per_chandra_akhir = new Lokasi("Cijantung",1,4,"lokasi akhir");
+        //tipe_layanan = new TipeLayanan ();
+        pes_chandra = new Pesanan(p_chandra, tipe_layanan, ojek_lokasi1, ojek_lokasi2, "Pelanggan1","Pelanggan2", 19000);
         database.addOjek(ojek_yuda);
         database.addPelanggan(p_chandra);
         p_database.addPesanan(pes_chandra);
-        ojek_yuda.printData();
-        p_chandra.printData();
-        ojek_yuda.setNama("chandra");
-        p_chandra.setNama("yuda");
-        ojek_yuda.printData();
-        p_chandra.printData();
-        pes_chandra.printData();
+        p_database.printData();
+        ojek_yuda.setNama("Yuda");
+        System.out.println("===================");
+        System.out.print("Ojek dengan nama " +ojek_yuda);
+        System.out.print(" dan ID " +database.getIDOjekTerakhir());
+        status = StatusOjek.Antar;
+        System.out.println(" memiliki status " +status);
+        System.out.println(p_chandra);
+        System.out.print(pes_chandra.getPenggunaAwal() +" di "+ojek_lokasi1.getNama() +" | " );
+        System.out.print(pes_chandra.getPenggunaAkhir() +" di "+ojek_lokasi2.getNama());
+        System.out.println(" dengan layanan "+StatusOjek.Antar); 
+        System.out.print("Status diproses "+pes_chandra.getStatusDiproses()+"| Status selesai "+pes_chandra.getStatusSelesai());
+        //p_chandra.setNama("yuda");
+        //ojek_yuda.printData();
+        //p_chandra.printData();
+        //pes_chandra.printData();
     }
+    
+        
 }

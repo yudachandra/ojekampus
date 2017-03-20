@@ -43,4 +43,11 @@ public class DatabasePesanan
    {
        return list_pesanan;
    }
+   
+   public void printData()
+    {
+        
+        //System.out.println("Ojek dengan nama " +ojek_database);
+        
+    }
 }

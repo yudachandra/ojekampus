@@ -92,4 +92,9 @@ public class DatabaseUser
    {
        return pelanggan_database;
    }
+   
+   public void printData(Ojek ojek_database)
+    {
+        System.out.println("==================== ");
+    }
 }

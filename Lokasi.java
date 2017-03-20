@@ -117,7 +117,7 @@ public class Lokasi
      *
      * @param keterangan_lokasi bernilai string dari keterangan lokasi
      */
-    public void setKeteranganLokasi(String keterangan_lokasi)
+    public void getKeteranganLokasi(String keterangan_lokasi)
     {
         this.keterangan_lokasi=keterangan_lokasi;
     }

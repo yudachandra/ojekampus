@@ -14,11 +14,10 @@ public class Pesanan
     private String pelanggan_awal;
     private String pelanggan_akhir;
     private double biaya;
-    //private String layanan;
     private Lokasi lokasi_awal;
     private Lokasi lokasi_akhir;
     private boolean diproses=false;
-    private boolean dibatalkan=false;
+    //private boolean dibatalkan=false;
     private TipeLayanan layanan;
     private boolean selesai=false;
     
@@ -50,11 +49,11 @@ public class Pesanan
      * getStatusPesanan.
      * Method yang akan mengembalikan status dari pesanan ketika dipanggil.
      * @return boolean true   status dari pesanan.
-     */ 
-    public boolean getStatusPesanan()
+     * 
+    //public boolean getStatusPesanan()
     {
         return true;
-    }
+    }*/
     
     /**
      * getPelanggan
@@ -70,11 +69,11 @@ public class Pesanan
      * getOjek
      * Method yang akan mengembalikan data Ojek yang menjalankan pesanan ketika dipanggil.
      * @return Ojek pelayan   data Ojek yang menjalankan pesanan.
-     */ 
-    public Ojek getOjek()
+     * 
+    //public Ojek getOjek()
     {
         return pelayan;
-    }
+    }*/
     
     /**
      * getLokasiAwal
@@ -141,11 +140,6 @@ public class Pesanan
         return biaya;
     }
     
-    public TipeLayanan getTipelayanan()
-    {
-        return layanan;
-    }
-    
     public boolean setStatusSelesai(Boolean selesai)
     {
         return selesai;
@@ -176,6 +170,46 @@ public class Pesanan
         return pelayan;
     }
     
+    public void setPelanggan (Pelanggan pengguna)
+    {
+        this.pengguna=pengguna;
+    }
+    
+    public void setPenggunaAwal (String pelanggan_awal)
+    {
+        this.pelanggan_awal=pelanggan_awal;
+    }
+    
+    public void setPenggunaAkhir (String pelanggan_akhir)
+    {
+        this.pelanggan_akhir=pelanggan_akhir;
+    }
+    
+    public void setBiaya (double biaya)
+    {
+        this.biaya=biaya;
+    }
+    
+    public void setTipeLayanan (TipeLayanan layanan)
+    {
+        this.layanan=layanan;
+    }
+    
+    public void setLokasiAwal (Lokasi lokasi_awal)
+    {
+        this.lokasi_awal=lokasi_awal;
+    }
+    
+    public void setLokasiAkhir (Lokasi lokasi_akhir)
+    {
+        this.lokasi_akhir=lokasi_akhir;
+    }
+    
+    public String toString()
+    {
+        return pelanggan_awal;
+    }
+    
     /**
      * printData
      * ya Allah, gua pasti kuat untuk menulis ini semua :(
@@ -183,8 +217,12 @@ public class Pesanan
      */
     public void printData()
     {
+        System.out.println("Nama Pelanggan Awal = " + pelanggan_awal);
+        System.out.println("Nama Pelanggan Akhir = " + pelanggan_akhir);
         System.out.println("Lokasi Awal Pelanggan = " + lokasi_awal);
-        System.out.println("Lokasi Akhir Pelanggan= " + lokasi_akhir);
+        System.out.println("Lokasi Akhir Pelanggan = " + lokasi_akhir);
         System.out.println("Jenis Layanan = " + layanan);
+        System.out.println("Status Diproses = " + diproses);
+        System.out.println("Status Selesai = " + selesai);
     }
 }

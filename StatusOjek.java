@@ -18,7 +18,7 @@ public enum StatusOjek
     
     public String toString()
     {
-        return "";
+        return deskripsi;
     }
     
 }
