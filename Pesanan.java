@@ -87,7 +87,6 @@ public class Pesanan
     
     /**
      * getLokasiAkhir
-     * ya Allah, gua pasti kuat untuk menulis ini semua :(
      * Method yang akan mengembalikan data lokasi akhir dari pesanan ketika dipanggil.
      * @return Lokasi lokasi_akhir   data lokasi akhir dari pesanan .
      */
@@ -98,7 +97,6 @@ public class Pesanan
     
     /**
      * getTipeLayanan
-     * ya Allah, gua pasti kuat untuk menulis ini semua :(
      * Method yang akan mengembalikan tipe layanan dari pesanan ketika dipanggil.
      * @return String layanan   data tipe layanan dari pesanan .
      */
@@ -109,7 +107,6 @@ public class Pesanan
     
     /**
      * getPenggunaAwal
-     * ya Allah, gua pasti kuat untuk menulis ini semua :(
      * Method yang akan mengembalikan data pengguna awal dari pesanan ketika dipanggil.
      * @return String pelanggan_awal   data pengguna awal dari pesanan .
      */
@@ -120,7 +117,6 @@ public class Pesanan
     
     /**
      * getPenggunaAkhir
-     * ya Allah, gua pasti kuat untuk menulis ini semua :(
      * Method yang akan mengembalikan data pengguna akhir dari pesanan ketika dipanggil.
      * @return String pelanggan_akhir   data pengguna akhir dari pesanan .
      */
@@ -131,7 +127,6 @@ public class Pesanan
     
     /**
      * getBiaya
-     * ya Allah, gua pasti kuat untuk menulis ini semua :(
      * Method yang akan mengembalikan data biaya dari pesanan ketika dipanggil.
      * @return double biaya   data biaya dari pesanan .
      */

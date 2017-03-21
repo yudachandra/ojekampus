@@ -7,6 +7,12 @@
  */
 public class Administrasi
 {
+    /**
+     * Method pesananDitugaskan
+     *
+     * @param pesan A parameter
+     * @param pelayan A parameter
+     */
     public static void pesananDitugaskan (Pesanan pesan, Ojek pelayan)
     {
         pesan.setStatusSelesai(false);
@@ -16,6 +22,12 @@ public class Administrasi
     }
     
     //Ga perlu diuji
+    /**
+     * Method ojekAmbilPesanan
+     *
+     * @param pesan A parameter
+     * @param pelayan A parameter
+     */
     public static void ojekAmbilPesanan (Pesanan pesan, Ojek pelayan)
     {
         pelayan.setStatus(StatusOjek.Jemput);
@@ -23,12 +35,22 @@ public class Administrasi
     }
     
     //Ga perlu diuji
+    /**
+     * Method ojekLepasPesanan
+     *
+     * @param pelayan A parameter
+     */
     public static void ojekLepasPesanan (Ojek pelayan)
     {
         pelayan.setStatus(StatusOjek.Jemput);
         pelayan.setPesanan(null);
     }
     
+    /**
+     * Method pesananDibatalkan
+     *
+     * @param pelayan A parameter
+     */
     public static void pesananDibatalkan (Ojek pelayan)
     {
         pelayan.getPesanan().setStatusSelesai(false);
@@ -37,6 +59,11 @@ public class Administrasi
         ojekLepasPesanan(pelayan);
     }
     
+    /**
+     * Method pesananSelesai
+     *
+     * @param pelayan A parameter
+     */
     public static void pesananSelesai (Ojek pelayan)
     {
         pelayan.getPesanan().setStatusSelesai(true);
@@ -45,6 +72,11 @@ public class Administrasi
         ojekLepasPesanan(pelayan);
     }
     
+    /**
+     * Method pesananDibatalkan
+     *
+     * @param pesan A parameter
+     */
     public static void pesananDibatalkan (Pesanan pesan)
     {
         ojekLepasPesanan(pesan.getPelayan());
@@ -53,6 +85,11 @@ public class Administrasi
         pesan.setPelayan(null);
     }
     
+    /**
+     * Method pesananSelesai
+     *
+     * @param pesan A parameter
+     */
     public static void pesananSelesai (Pesanan pesan)
     {
         ojekLepasPesanan(pesan.getPelayan());

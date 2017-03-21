@@ -68,16 +68,16 @@ public class OjeKampus
         
         System.out.println(pes_chandra);
         Pesanan pes_chandra2 = new Pesanan(p_chandra, TipeLayanan.AntarOrang, per_chandra_awal, per_chandra_akhir,
-        "Herdianto", null, 20000);
+        "Pelanggan1", null, 20000);
         System.out.println(pes_chandra2);
         
         Pesanan pes_chandra3 = new Pesanan(p_chandra, TipeLayanan.AntarOrang, per_chandra_awal, per_chandra_akhir,
-        "Herdianto", "Wicaksono", 20000);
+        "Pelanggan1", "Pelanggan2", 20000);
         administrasi.pesananDitugaskan(pes_chandra3, ojek_yuda);
         System.out.println(pes_chandra3);
         
         Pesanan pes_chandra4 = new Pesanan(p_chandra, TipeLayanan.AntarOrang, per_chandra_awal, per_chandra_akhir,
-        "Herdianto", null, 20000);
+        "Pelanggan1", null, 20000);
         administrasi.pesananDitugaskan(pes_chandra4, ojek_yuda);
         System.out.println(pes_chandra4);
     }
