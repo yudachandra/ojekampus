@@ -4,11 +4,11 @@ Tell the reader (someone who does not know anything about this project)
 all he/she needs to know. The comments should usually include at least:
 ------------------------------------------------------------------------
 
-PROJECT TITLE:          ojekampus
-PURPOSE OF PROJECT:     tugas 2 & 3
-VERSION or DATE:        4 March 2017
+PROJECT TITLE:          OjeKampus
+PURPOSE OF PROJECT:     Selesai Modul 4
+VERSION or DATE:        22 March 2017
 HOW TO START THIS PROJECT:
-AUTHORS:                yuda chandra wiguna
+AUTHORS:                Yuda Chandra Wiguna
 USER INSTRUCTIONS:
 
-//UML baru
+//UML Modul 4
