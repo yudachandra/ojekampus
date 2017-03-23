@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.params=nama\ nilai
+comment0.target=Mahasiswa(java.lang.String,\ int)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Mahasiswa\r\n
+comment1.params=nilai
+comment1.target=void\ setNilai(int)
+comment1.text=\r\n\ Method\ setNilai\r\n\r\n\ @param\ nilai\ untuk\ set\ nilai\ mahasiswa\r\n
+comment2.params=nama
+comment2.target=void\ setNama(java.lang.String)
+comment2.text=\r\n\ Method\ setNama\r\n\r\n\ @param\ nama\ set\ nama\ mahasiswa\r\n
+comment3.params=
+comment3.target=int\ getNilai()
+comment3.text=\r\n\ Method\ getNilai\r\n\r\n\ @return\ The\ return\ value\ dari\ nilai\ mahasiswa\r\n
+comment4.params=
+comment4.target=java.lang.String\ getNama()
+comment4.text=\r\n\ Method\ getNama\r\n\r\n\ @return\ The\ return\ value\ dari\ nama\ mahasiswa\r\n
+comment5.params=s
+comment5.target=int\ compareTo(Mahasiswa)
+comment5.text=\r\n\ Method\ compareTo\r\n\ \ \ \ \ \ Metode\ untuk\ membandingkan\ objek\ mahasiswa\ dengan\ objek\ mahasiswa\ yang\ lain\r\n\ @param\ s\ A\ parameter\r\n\ @return\ The\ return\ value\ dari\ nilai\ mahasiswa\ baru\ dengan\ lama\r\n\ apabila\ nilai\ return\ lebih\ besar,\ maka\ nilai\ tersebut\ akan\ di\ return\ setelah\ nilai\ kecil\ tersebut\r\n
+comment6.params=
+comment6.target=java.lang.String\ toString()
+comment6.text=\r\n\ Method\ toString\r\n\r\n\ @return\ method\ yang\ mencetak\ informasi\ dari\ kelas\ mahasiswa\r\n
+numComments=7

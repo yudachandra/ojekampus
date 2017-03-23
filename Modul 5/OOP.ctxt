@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=OOP()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ OOP\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment1.text=\r\n\ Method\ main\r\n\r\n\ @param\ args\ {}\ untuk\ memulai\ program\ main\ pada\ class\ ini\r\n
+numComments=2

@@ -42,6 +42,11 @@ public class Pelanggan
         return dob;
     }
     
+    public String getTelefon()
+    {
+        return telefon;
+    }
+    
     /**
      * getNama
      * Method untuk mengembalikan nilai yang telah di set value sebelumnya

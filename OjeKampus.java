@@ -21,6 +21,7 @@ public class OjeKampus
     public static TipeLayanan tipe_layanan;
     public static Administrasi administrasi;
     public static StatusOjek status;
+    public static Pesanan pelanggan_awal;
     
     /* Multi line comment
      * Constructor Ojekampus
@@ -42,12 +43,13 @@ public class OjeKampus
         p_database = new DatabasePesanan();
         ojek_lokasi1 = new Lokasi("Cibubur",14,06,"LokasiAwal");
         ojek_lokasi2 = new Lokasi("Depok",57,14,"LokasiAkhir");
-        ojek_yuda = new Ojek(database.getIDOjekTerakhir(),"Yuda", ojek_lokasi1);
+        ojek_yuda = new Ojek(database.getIDOjekTerakhir(),null, ojek_lokasi1);
         p_chandra = new Pelanggan(database.getIDPelangganTerakhir(),"Chandra");
         //per_chandra_awal = new Lokasi("Ciracas",5,7,"lokasi awal");
         //per_chandra_akhir = new Lokasi("Cijantung",1,4,"lokasi akhir");
         //tipe_layanan = new TipeLayanan ();
-        pes_chandra = new Pesanan(p_chandra, tipe_layanan, ojek_lokasi1, ojek_lokasi2, "Pelanggan1","Pelanggan2", 19000);
+        Pesanan pes_chandra = new Pesanan(p_chandra, tipe_layanan, ojek_lokasi1, ojek_lokasi2, "Pelanggan1","Pelanggan2", 19000);
+        //System.out.println(pes_chandra);
         database.addOjek(ojek_yuda);
         database.addPelanggan(p_chandra);
         p_database.addPesanan(pes_chandra);
@@ -66,20 +68,31 @@ public class OjeKampus
         ojek_yuda.setDOB(20, 2, 2017);
         System.out.println("Tanggal Input "+ojek_yuda.getDOB());
         
-        System.out.println(pes_chandra);
-        Pesanan pes_chandra2 = new Pesanan(p_chandra, TipeLayanan.AntarOrang, per_chandra_awal, per_chandra_akhir,
-        "Pelanggan1", null, 20000);
-        System.out.println(pes_chandra2);
+        //Tes Kondisi
+        System.out.println("===================");
+        System.out.println("Tes Kondisi");
+        Pesanan kondisi1 = new Pesanan(p_chandra, tipe_layanan, ojek_lokasi1, ojek_lokasi2, "Pelanggan1","Pelanggan2", 19000);
+        System.out.println(kondisi1);
+        Pesanan kondisi2 = new Pesanan(p_chandra, tipe_layanan, ojek_lokasi1, ojek_lokasi2,"Pelanggan1", null, 19000);
+        System.out.println(kondisi2);
         
-        Pesanan pes_chandra3 = new Pesanan(p_chandra, TipeLayanan.AntarOrang, per_chandra_awal, per_chandra_akhir,
-        "Pelanggan1", "Pelanggan2", 20000);
-        administrasi.pesananDitugaskan(pes_chandra3, ojek_yuda);
-        System.out.println(pes_chandra3);
+        Pesanan kondisi3 = new Pesanan(p_chandra, tipe_layanan, ojek_lokasi1, ojek_lokasi2,"Pelanggan1", "Pelanggan2", 19000);
+        administrasi.pesananDitugaskan(kondisi2, ojek_yuda);
+        System.out.println(kondisi3);
         
-        Pesanan pes_chandra4 = new Pesanan(p_chandra, TipeLayanan.AntarOrang, per_chandra_awal, per_chandra_akhir,
-        "Pelanggan1", null, 20000);
-        administrasi.pesananDitugaskan(pes_chandra4, ojek_yuda);
-        System.out.println(pes_chandra4);
+        Pesanan kondisi4 = new Pesanan(p_chandra, tipe_layanan, ojek_lokasi1, ojek_lokasi2,"Pelanggan1", "Pelanggan2", 19000);
+        administrasi.pesananDitugaskan(kondisi3, ojek_yuda);
+        System.out.println(kondisi4);
+        
+        System.out.println("===================");
+        System.out.println("Tes Plat, No. Telp, DOB");
+        System.out.println(p_chandra.getNama());
+        ojek_yuda.setNoPlat("B3201TIX");
+        System.out.println(ojek_yuda.getNoPlat());
+        p_chandra.setTelefon("081293599195");
+        System.out.println(p_chandra.getTelefon());
+        ojek_yuda.setDOB(29, 06, 1996);
+        System.out.println("Tanggal Lahir "+ojek_yuda.getDOB().toString());
     }
     
         

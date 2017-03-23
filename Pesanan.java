@@ -21,6 +21,7 @@ public class Pesanan
     private TipeLayanan layanan;
     private boolean selesai=false;
     
+    
     /**
      * Constructor Pesanan. 
      * Method yang pertama kali dipanggil ketika sebuah object dari kelas pesanan dibuat.
@@ -147,7 +148,7 @@ public class Pesanan
     
     public void setStatusDiproses(Boolean diproses)
     {
-        
+        this.diproses=diproses;
     }
     
     public boolean getStatusDiproses()
@@ -157,7 +158,7 @@ public class Pesanan
     
     public void setPelayan(Ojek pelayan)
     {
-        
+        this.pelayan=pelayan;
     }
     
     public Ojek getPelayan()
@@ -203,7 +204,7 @@ public class Pesanan
     public String toString()
     {
         String final_status = "KOSONG";
-
+        
         if (getStatusDiproses()) {
             final_status = "DIPROSES";
         }
