@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * OjeKampus merupakan main class dari project ojekampus yang terdapat method main.
@@ -7,33 +8,11 @@
  */
 public class DatabaseUser
 {
-  //Instance Variables
-   private static Pelanggan pelanggan_database;
-   private static Ojek ojek_database;
-   private static int id_ojek_terakhir=1;
-   private static int id_pelanggan_terakhir=1;
-   
-   /**
-     * Method untuk mengecek boolean value dari pelanggan
-     * @return true    bila nilai true maka sistem akan print string yang telah di deklarasi
-     */
-   public static boolean addPelanggan(Pelanggan baru)
-   {
-       pelanggan_database = baru;         
-       System.out.println("Penambahan Pelanggan Berhasil");
-
-       return true;
-   }
-   
-   /**
-     * Method untuk mengecek boolean value dari pelanggan
-     * @return true    bila nilai true maka sistem akan print string yang telah di deklarasi
-     */
-   public static boolean removePelanggan(int id)
-   {
-       pelanggan_database=null;
-       return true;
-   }
+   //Instance Variables
+   private static int id_ojek_terakhir;
+   private static int id_pelanggan_terakhir;
+   private static ArrayList<Ojek> ojek_database = new ArrayList<>();
+   private static ArrayList<Pelanggan> pelanggan_database = new ArrayList<>();
    
    /**
      * Method untuk mengecek boolean value dari pelanggan
@@ -41,21 +20,35 @@ public class DatabaseUser
      */
     public static boolean addOjek(Ojek baru)
    {
-       ojek_database = baru;
-       System.out.println("Penambahan Ojek Berhasil");
-
-       return true;
-   }
+        for(Ojek data_ojek : ojek_database)
+        {
+            if(data_ojek.equals(baru))
+            {
+                System.out.println("Penambahan ojek dalam database gagal");
+                return false;
+            }
+        }
+        ojek_database.add(baru);
+        System.out.println("Penambahan ojek dalam database berhasil");
+        return true;
+    }
    
    /**
      * Method untuk mengecek boolean value dari pelanggan
      * @return true    bila nilai true maka sistem akan print string yang telah di deklarasi
      */
-   public static boolean removeOjek(int id)
+   public static boolean addPelanggan(Pelanggan baru)
    {
-       ojek_database=null;
-       return true;
-   }
+        for(Pelanggan data_pengguna : pelanggan_database){
+            if(data_pengguna.equals(baru)){
+                System.out.println("Penambahan pelanggan dalam database gagal");
+                return false;
+            }
+        }
+        pelanggan_database.add(baru);
+        System.out.println("Penambahan pelanggan dalam database berhasil");
+        return true;
+    }
    
    /**
      * Method untuk mengecek boolean value dari pelanggan
@@ -75,26 +68,82 @@ public class DatabaseUser
        return id_pelanggan_terakhir;
    }
    
+   public static ArrayList<Ojek> getOjekDatabase()
+   {
+       return ojek_database;
+   }
+    
+   public static ArrayList<Pelanggan> getPelangganDatabase()
+   {
+       return pelanggan_database;
+   }
+    
    /**
      * Method untuk mengecek boolean value dari pelanggan
      * @return ojek_database    bila nilai true maka sistem akan print string yang telah di deklarasi
      */
    public static Ojek getUserOjek(int id)
    {
-       return ojek_database;
-   }
+        for(Ojek data_ojek : ojek_database)
+        {
+            if(data_ojek.getID() == id)
+            {
+                 return data_ojek;
+            }
+        }
+        return null;
+    }
 
    /**
      * Method untuk mengecek boolean value dari pelanggan
      * @return pelanggan_database    bila nilai true maka sistem akan print string yang telah di deklarasi
      */
-   public static Pelanggan getUserPelanggan()
+   public static Pelanggan getUserPelanggan(int id)
    {
-       return pelanggan_database;
-   }
+       for(Pelanggan data_pelanggan : pelanggan_database)
+       {
+            if(data_pelanggan.getID() == id)
+            {
+                 return data_pelanggan;
+            }
+        }
+        return null;
+    }
    
    public void printData(Ojek ojek_database)
     {
         System.out.println("==================== ");
+    }
+    
+   /**
+     * Method untuk mengecek boolean value dari pelanggan
+     * @return true    bila nilai true maka sistem akan print string yang telah di deklarasi
+     */
+   public static boolean removeOjek(int id)
+   {
+        Ojek data_ojek = getUserOjek(id);
+        if(data_ojek == null){
+            System.out.println("ID ojek tidak terdaftar, penghapusan batal");
+            return false;
+        }
+        ojek_database.remove(data_ojek);
+        System.out.println("Penghapusan Ojek dengan ID " + id + " berhasil dilakukan");
+        return true;
+    }
+   
+   /**
+     * Method untuk mengecek boolean value dari pelanggan
+     * @return true    bila nilai true maka sistem akan print string yang telah di deklarasi
+     */
+   public static boolean removePelanggan(int id)
+   {
+        Pelanggan data_pelanggan = getUserPelanggan(id);
+        if(data_pelanggan == null){
+            System.out.println("ID Pelanggan tidak terdaftar, penghapusan batal");
+            return false;
+        }
+        pelanggan_database.remove(data_pelanggan);
+        System.out.println("Penghapusan Pelanggan dengan ID " + id + " berhasil dilakukan");
+        return true;
     }
 }

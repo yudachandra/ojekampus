@@ -8,24 +8,19 @@
  
 public class OjeKampus
 {
-    // Single line comment :Instance Variable
+    // Single line comment : Variable Instance
     public static Pelanggan p_chandra;
     public static Ojek ojek_yuda;
     public static DatabaseUser database;
     public static DatabasePesanan p_database;
-    public static Lokasi ojek_lokasi1;
-    public static Lokasi ojek_lokasi2;
+    public static Lokasi ojek_lokasi;
     public static Lokasi per_chandra_awal;
     public static Lokasi per_chandra_akhir;
-    public static Pesanan pes_chandra;
-    public static TipeLayanan tipe_layanan;
-    public static Administrasi administrasi;
-    public static StatusOjek status;
-    public static Pesanan pelanggan_awal;
+    public static Pesanan pesanan_1;
     
     /* Multi line comment
      * Constructor Ojekampus
-     * Constructor ini tidak perlu diberi apapun
+     * Constructor ini tidak perlu diberikan apapun, karena class ini tidak memerlukan apapun ketika
      */
     public OjeKampus()
     {
@@ -33,67 +28,66 @@ public class OjeKampus
     }
 
     /**
-     * Method Main Modul 2. 
-     * Metode utama pada untuk menjalankan tiap-tiap kelas di project ini.
+     * Method Main. 
+     * Metode utama pada project ojekampus yang akan dialankan ketika project di compile dan di run.
      * @param  String args[]    argumen yang diberikan untuk metode main.
      */
     public static void main(String args[])
     {
-        database = new DatabaseUser();
-        p_database = new DatabasePesanan();
-        ojek_lokasi1 = new Lokasi("Cibubur",14,06,"LokasiAwal");
-        ojek_lokasi2 = new Lokasi("Depok",57,14,"LokasiAkhir");
-        ojek_yuda = new Ojek(database.getIDOjekTerakhir(),null, ojek_lokasi1);
-        p_chandra = new Pelanggan(database.getIDPelangganTerakhir(),"Chandra");
-        //per_chandra_awal = new Lokasi("Ciracas",5,7,"lokasi awal");
-        //per_chandra_akhir = new Lokasi("Cijantung",1,4,"lokasi akhir");
-        //tipe_layanan = new TipeLayanan ();
-        Pesanan pes_chandra = new Pesanan(p_chandra, tipe_layanan, ojek_lokasi1, ojek_lokasi2, "Pelanggan1","Pelanggan2", 19000);
-        //System.out.println(pes_chandra);
-        database.addOjek(ojek_yuda);
-        database.addPelanggan(p_chandra);
-        p_database.addPesanan(pes_chandra);
-        p_database.printData();
-        ojek_yuda.setNama("Yuda");
-        System.out.println("===================");
-        System.out.print("Ojek dengan nama " +ojek_yuda);
-        System.out.print(" dan ID " +database.getIDOjekTerakhir());
-        status = StatusOjek.Antar;
-        System.out.println(" memiliki status " +status);
-        System.out.println(p_chandra);
-        System.out.print(pes_chandra.getPenggunaAwal() +" di "+ojek_lokasi1.getNama() +" | " );
-        System.out.print(pes_chandra.getPenggunaAkhir() +" di "+ojek_lokasi2.getNama());
-        System.out.println(" dengan layanan "+StatusOjek.Antar); 
-        System.out.println("Status diproses "+pes_chandra.getStatusDiproses()+"| Status selesai "+pes_chandra.getStatusSelesai());
-        ojek_yuda.setDOB(20, 2, 2017);
-        System.out.println("Tanggal Input "+ojek_yuda.getDOB());
+        //Modul 5 Tugas 4
+        System.out.println("\n");
+        Lokasi lokasi_ojek1 = new Lokasi("Ps. Senen",01,02,"Ps. Rebo");
+        Ojek ojek1 = new Ojek(1,"Ojek1", lokasi_ojek1);
+        DatabaseUser.addOjek(ojek1);
+        Lokasi lokasi_ojek2 = new Lokasi("Ps. Rebo",11,12,"Ps. Jumat");
+        Ojek ojek2 = new Ojek(2,"Ojek2", lokasi_ojek2);
+        DatabaseUser.addOjek(ojek2);
+        Lokasi lokasi_ojek3 = new Lokasi("Ps. Jumat",21,22,"Ps. Minggu");
+        Ojek ojek3 = new Ojek(3,"Ojek3", lokasi_ojek3);
+        DatabaseUser.addOjek(ojek3);
+        Pelanggan pelanggan1 = new Pelanggan(1, "Aziz","0812-3456-7890");
+        DatabaseUser.addPelanggan(pelanggan1);
+        Pelanggan pelanggan2 = new Pelanggan(2, "Dea","0813-3456-7890");
+        DatabaseUser.addPelanggan(pelanggan2);
+        Pelanggan pelanggan3 = new Pelanggan(3, "Chandra","0814-3456-7890");
+        DatabaseUser.addPelanggan(pelanggan3);
         
-        //Tes Kondisi
-        System.out.println("===================");
-        System.out.println("Tes Kondisi");
-        Pesanan kondisi1 = new Pesanan(p_chandra, tipe_layanan, ojek_lokasi1, ojek_lokasi2, "Pelanggan1","Pelanggan2", 19000);
-        System.out.println(kondisi1);
-        Pesanan kondisi2 = new Pesanan(p_chandra, tipe_layanan, ojek_lokasi1, ojek_lokasi2,"Pelanggan1", null, 19000);
-        System.out.println(kondisi2);
+        Lokasi lokasi_awal_pesanan1 = new Lokasi("Cibubur",14,06,"LokasiAwal");
+        Lokasi lokasi_akhir_pesanan1 = new Lokasi("Depok",57,14,"LokasiAkhir");
+        Pesanan pesanan1 = new Pesanan(pelanggan1, TipeLayanan.BeliBarang, lokasi_awal_pesanan1, lokasi_akhir_pesanan1, pelanggan1.getNama(), pelanggan2.getNama(), 12000);
+        DatabasePesanan.addPesanan(pesanan1);
         
-        Pesanan kondisi3 = new Pesanan(p_chandra, tipe_layanan, ojek_lokasi1, ojek_lokasi2,"Pelanggan1", "Pelanggan2", 19000);
-        administrasi.pesananDitugaskan(kondisi2, ojek_yuda);
-        System.out.println(kondisi3);
+        Lokasi lokasi_awal_pesanan2 = new Lokasi("Depok",57,14,"LokasiAwal");
+        Lokasi lokasi_akhir_pesanan2 = new Lokasi("Cijantung",51,00,"LokasiAkhir");
+        Pesanan pesanan2 = new Pesanan(pelanggan2, TipeLayanan.BeliBarang, lokasi_awal_pesanan2, lokasi_akhir_pesanan2, pelanggan2.getNama(), pelanggan3.getNama(), 15000);
+        DatabasePesanan.addPesanan(pesanan2);
         
-        Pesanan kondisi4 = new Pesanan(p_chandra, tipe_layanan, ojek_lokasi1, ojek_lokasi2,"Pelanggan1", "Pelanggan2", 19000);
-        administrasi.pesananDitugaskan(kondisi3, ojek_yuda);
-        System.out.println(kondisi4);
+        Lokasi lokasi_awal_pesanan3 = new Lokasi("Cijantung",51,00,"LokasiAwal");
+        Lokasi lokasi_akhir_pesanan3 = new Lokasi("Ciracas",29,06,"LokasiAkhir");
+        Pesanan pesanan3 = new Pesanan(pelanggan3, TipeLayanan.BeliBarang, lokasi_awal_pesanan3, lokasi_akhir_pesanan3, pelanggan3.getNama(), pelanggan1.getNama(), 15000);
+        DatabasePesanan.addPesanan(pesanan3);
         
-        System.out.println("===================");
-        System.out.println("Tes Plat, No. Telp, DOB");
-        System.out.println(p_chandra.getNama());
-        ojek_yuda.setNoPlat("B3201TIX");
-        System.out.println(ojek_yuda.getNoPlat());
-        p_chandra.setTelefon("081293599195");
-        System.out.println(p_chandra.getTelefon());
-        ojek_yuda.setDOB(29, 06, 1996);
-        System.out.println("Tanggal Lahir "+ojek_yuda.getDOB().toString());
+        System.out.println("\n");
+        Administrasi.printAllDatabase();
+        
+        Administrasi.jalankanSistemPenugas();
+        Administrasi.jalankanSistemPenugas();
+        Administrasi.jalankanSistemPenugas();
+        System.out.println("\n");
+        Administrasi.printAllDatabase();
+        
+        Administrasi.pesananDibatalkan(pesanan1.getPelanggan());
+        Administrasi.pesananDibatalkan(pesanan2.getPelayan());
+        pesanan3.getPelayan().setStatus(StatusOjek.Antar);
+        System.out.println("\n");
+        Administrasi.printAllDatabase();
+        
+        Administrasi.pesananSelesai(pesanan3.getPelanggan());
+        DatabasePesanan.hapusPesanan(pesanan3.getPelanggan());
+        System.out.println("\n");
+        Administrasi.printAllDatabase();
+        
+        
     }
-    
-        
 }
+

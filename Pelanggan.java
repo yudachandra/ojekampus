@@ -20,10 +20,11 @@ public class Pelanggan
      * Pelanggan
      * Method untuk memberi nilai baru dengan parameter instance variable
      */
-    public Pelanggan(int id, String nama)
+    public Pelanggan(int id, String nama, String telefon)
     {
         this.id=id;
         this.nama=nama;
+        this.telefon=telefon;
     }
     
     
@@ -119,9 +120,9 @@ public class Pelanggan
     
     public String toString()
     {
-        if (DatabasePesanan.getPesanan() !=null)
+        if (DatabasePesanan.getPesanan(this) !=null)
         {
-            return nama+""+id+""+telefon+""+DatabasePesanan.getPesanan().getPenggunaAwal();
+            return nama+""+id+""+telefon+""+DatabasePesanan.getPesanan(this).getPenggunaAwal();
         }
         else
         {

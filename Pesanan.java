@@ -9,18 +9,16 @@ public class Pesanan
 
 {
     //Instance Variables
-    private Ojek pelayan=null ;
+    private Ojek pelayan;
     private Pelanggan pengguna;
     private String pelanggan_awal;
     private String pelanggan_akhir;
     private double biaya;
     private Lokasi lokasi_awal;
     private Lokasi lokasi_akhir;
-    private boolean diproses=false;
-    //private boolean dibatalkan=false;
+    private boolean diproses;
     private TipeLayanan layanan;
-    private boolean selesai=false;
-    
+    private boolean selesai;
     
     /**
      * Constructor Pesanan. 

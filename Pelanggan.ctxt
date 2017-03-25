@@ -1,6 +1,6 @@
 #BlueJ class context
-comment0.params=id\ nama
-comment0.target=Pelanggan(int,\ java.lang.String)
+comment0.params=id\ nama\ telefon
+comment0.target=Pelanggan(int,\ java.lang.String,\ java.lang.String)
 comment0.text=\r\n\ Pelanggan\r\n\ Method\ untuk\ memberi\ nilai\ baru\ dengan\ parameter\ instance\ variable\r\n
 comment1.params=
 comment1.target=int\ getID()
