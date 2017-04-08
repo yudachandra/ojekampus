@@ -2,8 +2,8 @@
 /**
  * Enumeration class StatusOjek - write a description of the enum class here
  * 
- * @author (your name here)
- * @version (version number or date here)
+ * @author Yuda Chandra W
+ * @version 8 April 2017
  */
 public enum StatusOjek
 {
@@ -16,9 +16,8 @@ public enum StatusOjek
         this.deskripsi=deskripsi;
     }
     
-    public String toString()
+    public String getIDStatus()
     {
         return deskripsi;
     }
-    
 }

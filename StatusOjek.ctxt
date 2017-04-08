@@ -1,6 +1,8 @@
 #BlueJ class context
-comment0.params=deskripsi
-comment0.target=StatusOjek(java.lang.String)
-comment1.params=
-comment1.target=java.lang.String\ toString()
-numComments=2
+comment0.target=StatusOjek
+comment0.text=\r\n\ Enumeration\ class\ StatusOjek\ -\ write\ a\ description\ of\ the\ enum\ class\ here\r\n\ \r\n\ @author\ Yuda\ Chandra\ W\r\n\ @version\ 8\ April\ 2017\r\n
+comment1.params=deskripsi
+comment1.target=StatusOjek(java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getIDStatus()
+numComments=3

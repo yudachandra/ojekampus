@@ -5,7 +5,7 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Normal
+public class Normal implements Rank
 {
     // instance variables - replace the example below with your own
     private String attackName;
@@ -20,17 +20,17 @@ public class Normal
 
     public void setAttackName(String name)
     {
-        this.attackName = name;
+        attackName = name;
     }
     
-    public String getAttackName()
+    public String getAttackerName()
     {
         return attackName;
     }
     
     public void setAttackPower(int power)
     {
-        this.attackPower = power;
+        attackPower = power;
     }
     
     public int getAttackPower()

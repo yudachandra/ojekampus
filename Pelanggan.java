@@ -9,124 +9,34 @@ import java.util.GregorianCalendar;
  * @author Yuda Chandra Wiguna 
  * @version 4 March 2017
  */
-public class Pelanggan
+public class Pelanggan extends User
 {
-    //Instance Variables
-    private int id;
-    private String nama, telefon, email;
-    private Date dob;
-    
+    // instance variables - replace the example below with your own
+   
     /**
-     * Pelanggan
-     * Method untuk memberi nilai baru dengan parameter instance variable
+     * Pelanggan Constructor
+     * 
+     * @param id - id pelanggan
+     * @param nama - nama pelanggan
+     * @param telefon A parameter
      */
-    public Pelanggan(int id, String nama, String telefon)
+    public Pelanggan(int id, String nama, String telefon) 
     {
-        this.id=id;
-        this.nama=nama;
-        this.telefon=telefon;
-    }
-    
-    
-    /**
-     * getID
-     * Method untuk mengembalikan nilai yang telah di set value sebelumnya
-     * @return id    
-     */
-    public int getID()
-    {
-        return id;
-    }
-    
-    public Date getDOB()
-    {
-        return dob;
-    }
-    
-    public String getTelefon()
-    {
-        return telefon;
+        // initialise instance variables
+        super(id,nama);
+        setTelefon(telefon);
     }
     
     /**
-     * getNama
-     * Method untuk mengembalikan nilai yang telah di set value sebelumnya
-     * @return nama    
-     */
-    public String getNama()
-    {
-        return nama;
-    }
-    
-    public boolean setTelefon (String telefon)
-    {
-        // \\d menyatakan digit, \\D menyatakan non-digit, X{y,z} setidaknya y kali dan tidak lebih dari z
-        Pattern pattern = Pattern.compile("0\\d{8,11}|0\\d{2}\\-\\d{4}\\-\\d{4}|0\\d{2}\\-\\d{4}\\-\\d{3}|0\\d{2}\\-\\d{3}\\-\\d{3}");
-        Matcher matcher = pattern.matcher(telefon);
-        if (matcher.matches()) 
-        {
-            System.out.println ("No. Telepon Anda Adalah : "+telefon);
-            this.telefon = telefon;
-            return true;
+     * printData. 
+     * Metode untuk menampilkan data pelanggan.
+     */    
+    public String toString(){
+        if(DatabasePesanan.getPesanan(this) == null){
+            return "Pelanggan" + " Nama : "+ nama + " Id : "+ id + "No.Telepon : " + telefon + "||";
         }
-        else 
-        {
-            System.out.println ("Maaf No. telepon yang Anda masukan tidak sesuai");
-            System.out.println ("Silahkan masukan kembali No. telepon Anda yang sesuai");
-            return false;
-        }
-    }
+        Pesanan temp = DatabasePesanan.getPesanan(this);
+        return "Pelanggan" + " Nama : "+ nama + " Id : "+ id + "No.Telepon : " + telefon + " Pelanggan Awal :" + temp.getPenggunaAwal() + "||";
+    } 
     
-    public boolean setEmail (String email)
-    {
-        Pattern pola_email = Pattern.compile("\\S+@\\S+\\.\\S+");
-        Matcher matcher_email = pola_email.matcher(email);
-        if (matcher_email.matches())
-        {
-            System.out.println ("Alamat E-mail Anda Adalah : "+email);
-            this.email=email;
-            return true;
-        }
-        else
-        {
-            System.out.println ("Maaf e-mail yang Anda masukan tidak sesuai");
-            System.out.println ("Silahkan masukan kembali e-mail Anda yang sesuai");
-            return false;
-        }
-    }
-    
-    public void setDOB (int day, int month, int year)
-    {
-        dob = new GregorianCalendar (year, month, day).getTime();
-    }
-    
-    /**
-     * setID
-     * Method untuk mengembalikan nilai yang telah di set value sebelumnya  
-     */
-    public void setID(int id)
-    {
-        this.id=id;
-    }
-    
-    /**
-     * setNama
-     * Method untuk mengembalikan nilai yang telah di set value sebelumnya 
-     */
-    public void setNama(String nama)
-    {
-        this.nama=nama;
-    }
-    
-    public String toString()
-    {
-        if (DatabasePesanan.getPesanan(this) !=null)
-        {
-            return nama+""+id+""+telefon+""+DatabasePesanan.getPesanan(this).getPenggunaAwal();
-        }
-        else
-        {
-            return nama + " " + id + " " + telefon; 
-        }
-    }
 }

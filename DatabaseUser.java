@@ -9,10 +9,11 @@ import java.util.ArrayList;
 public class DatabaseUser
 {
    //Instance Variables
-   private static int id_ojek_terakhir;
-   private static int id_pelanggan_terakhir;
+   private static int id_ojek_terakhir=1;
+   private static int id_pelanggan_terakhir=1;
    private static ArrayList<Ojek> ojek_database = new ArrayList<>();
    private static ArrayList<Pelanggan> pelanggan_database = new ArrayList<>();
+   private static ArrayList<User> user_database = new ArrayList<User>();
    
    /**
      * Method untuk mengecek boolean value dari pelanggan
@@ -20,6 +21,13 @@ public class DatabaseUser
      */
     public static boolean addOjek(Ojek baru)
    {
+        for(Pelanggan id_pelanggan_terakhir : pelanggan_database){
+            if(id_pelanggan_terakhir.equals(baru)){
+                System.out.println("Penambahan pelanggan dalam database gagal");
+                return false;
+            }
+        }
+        
         for(Ojek data_ojek : ojek_database)
         {
             if(data_ojek.equals(baru))
@@ -39,7 +47,14 @@ public class DatabaseUser
      */
    public static boolean addPelanggan(Pelanggan baru)
    {
-        for(Pelanggan data_pengguna : pelanggan_database){
+       for(Pelanggan id_pelanggan_terakhir : pelanggan_database){
+            if(id_pelanggan_terakhir.equals(baru)){
+                System.out.println("Penambahan pelanggan dalam database gagal");
+                return false;
+            }
+        }
+       
+       for(Pelanggan data_pengguna : pelanggan_database){
             if(data_pengguna.equals(baru)){
                 System.out.println("Penambahan pelanggan dalam database gagal");
                 return false;

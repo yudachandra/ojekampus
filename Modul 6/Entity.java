@@ -18,7 +18,7 @@ public abstract class Entity implements Wear
     protected double armorDef;
     protected double attack;
     protected double defense;
-    protected double dead;
+    protected boolean dead=false;
     protected Rank rank;
     
     public  Entity (String name, int level)
@@ -35,15 +35,17 @@ public abstract class Entity implements Wear
     }
     protected void setHP (double diff)
     {
-        health=health-1;
-        if (health==0)
+        health-=diff;
+        if (health<=0)
         {
-            isDead();
+             dead = true;
         }
     }
     protected double getDamage (double def, double opRank)
     {
-        double damage = (1+(2*level/5+2)*rank.getAttackPower()*weaponDmg/armorDef/50)*attack*defense;
+        double damage ;
+        damage = (1+(((((2*level)/5)+2)*rank.getAttackPower()*(attack/def))/50))
+        *opRank*rank.getRank();
         return 0;
     }
     protected void setPower()
@@ -58,18 +60,19 @@ public abstract class Entity implements Wear
     }
     protected int getLevel()
     {
-        return 0;
+        return level;
     }
     protected int getHp()
     {
-        return 0;
+        return health;
     }
     protected boolean isDead()
     {
-        return true;
+        return dead;
     }
     protected void setRank (Rank rank)
     {
+        this.rank=rank;
     }
     protected Rank getRank()
     {
@@ -96,6 +99,9 @@ public abstract class Entity implements Wear
     }
     public void setArmor (String name, double def)
     {
+        armor = name;
+        armorDef = def;
+        setPower();
     }
     public String getArmor()
     {
@@ -103,7 +109,7 @@ public abstract class Entity implements Wear
     }
     public double getArmorDef()
     {
-        return 0;
+        return armorDef;
     }
     protected void fullHP()
     {

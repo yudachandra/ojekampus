@@ -20,6 +20,7 @@ public class Hero extends Entity
     {
         maxHP=(15*level+5)/4;
         strength=(15*level+5)/8;
+        health=maxHP;
         setPower();
     }
 }

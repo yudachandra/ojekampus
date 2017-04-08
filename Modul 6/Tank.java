@@ -4,7 +4,7 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Tank
+public class Tank implements Rank
 {
     private String attackName;
     private int attackPower;
@@ -12,22 +12,23 @@ public class Tank
 
     public Tank(String name, int power)
     {
-       
+       this.attackName = name;
+       this.attackPower = power;
     }
    
     public void setAttackName(String name)
     {
-        // put your code here
+        attackName = name;
     }
     
-    public String getAttacName()
+    public String getAttackerName()
     {
         return attackName;
     }
     
-    public void setAttckPower(int power)
+    public void setAttackPower(int power)
     {
-        
+        attackPower = power;
     }
     
     public int getAttackPower()
