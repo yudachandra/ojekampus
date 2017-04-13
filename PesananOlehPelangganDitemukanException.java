@@ -14,12 +14,12 @@ public class PesananOlehPelangganDitemukanException extends Exception
      */
     public PesananOlehPelangganDitemukanException(Pelanggan pelanggan_input)
     {
-        super("Pesanan oleh");
+        super("\nPesanan oleh : ");
         this.pelanggan_error=pelanggan_input;
     }
 
     public String getMessage()
     {
-        return super.getMessage() + pelanggan_error.getNama() + "Tidak Ditemukan";
+        return super.getMessage() + pelanggan_error.getNama() + ". Tidak Ditemukan";
     }
 }

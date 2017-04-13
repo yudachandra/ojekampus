@@ -15,12 +15,12 @@ public class PesananSudahAdaException extends Exception
      */
     public PesananSudahAdaException(Pesanan pesanan_input)
     {
-        super("Pelanggan dengan nama");
+        super("\nPelanggan dengan nama : ");
         this.pesanan_error=pesanan_input;
     }
 
     public String getMessage()
     {
-        return super.getMessage() + pesanan_error.getPelanggan().getNama() + "Sudah Melakukan Pemesanan Dengan Tipe Layanan" + pesanan_error.getTipeLayanan();
+        return super.getMessage() + pesanan_error.getPelanggan().getNama() + ". Sudah Melakukan Pemesanan Dengan Tipe Layanan : " + pesanan_error.getTipeLayanan();
     }
 }

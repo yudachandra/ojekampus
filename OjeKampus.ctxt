@@ -1,10 +1,8 @@
 #BlueJ class context
-comment0.target=OjeKampus
-comment0.text=\r\n\ OjeKampus\ merupakan\ main\ class\ dari\ project\ ojekampus\ yang\ terdapat\ method\ main.\r\n\ Kelas\ utama\ untuk\ menjalankan\ program\ main\r\n\ @author\ Yuda\ Chandra\ Wiguna\ \r\n\ @version\ 4\ March\ 2017\r\n
-comment1.params=
-comment1.target=OjeKampus()
-comment1.text=\ Multi\ line\ comment\r\n\ Constructor\ Ojekampus\r\n\ Constructor\ ini\ tidak\ perlu\ diberikan\ apapun,\ karena\ class\ ini\ tidak\ memerlukan\ apapun\ ketika\r\n
-comment2.params=args
-comment2.target=void\ main(java.lang.String[])
-comment2.text=\r\n\ Method\ Main.\ \r\n\ Metode\ utama\ pada\ project\ ojekampus\ yang\ akan\ dialankan\ ketika\ project\ di\ compile\ dan\ di\ run.\r\n\ @param\ \ String\ args[]\ \ \ \ argumen\ yang\ diberikan\ untuk\ metode\ main.\r\n
-numComments=3
+comment0.params=
+comment0.target=OjeKampus()
+comment0.text=\ Multi\ line\ comment\r\n\ Constructor\ Ojekampus\r\n\ Constructor\ ini\ tidak\ perlu\ diberikan\ apapun,\ karena\ class\ ini\ tidak\ memerlukan\ apapun\ ketika\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment1.text=\r\n\ Method\ Main.\ \r\n\ Metode\ utama\ pada\ project\ ojekampus\ yang\ akan\ dialankan\ ketika\ project\ di\ compile\ dan\ di\ run.\r\n\ @param\ \ String\ args[]\ \ \ \ argumen\ yang\ diberikan\ untuk\ metode\ main.\r\n
+numComments=2

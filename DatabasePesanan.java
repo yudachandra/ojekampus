@@ -15,7 +15,7 @@ public class DatabasePesanan
      * Method untuk mengembalikan data pesanan yang terakhir dimasukkan ke database ketika dipanggil.
      * @return Pesanan list_pesanan     data pesanan yang terakhir dimasukkan ke database.
      */
-   public static boolean addPesanan(Pesanan pesan)
+   public static boolean addPesanan(Pesanan pesan) throws PesananSudahAdaException
    {
        Pelanggan pengguna = pesan.getPelanggan();
        if(getPesanan(pengguna)==null)
@@ -25,7 +25,7 @@ public class DatabasePesanan
             return true;
        }
        System.out.println("Pesanan gagal");
-       return false;
+       throw new PesananSudahAdaException(pesan);
    }
    
    public static ArrayList<Pesanan> getDatabase()
@@ -56,15 +56,15 @@ public class DatabasePesanan
      * @param Pelanggan pengguna data pesanan yang akan dihapus dalam database.
      * @return true   menandakan penghapusan pesanan berhasil dilakukan.
      */
-   public static boolean hapusPesanan(Pelanggan pengguna)
+   public static boolean hapusPesanan(Pesanan pesan) throws PesananTidakDitemukanException
+   
    {
-        Pesanan pesan = getPesanan(pengguna);
+        //Pesanan pesan = getPesanan(pengguna);
         if(pesan.getPelayan()== null)
         {
-            list_pesanan.remove(pesan);
-            return true;
+            throw new PesananTidakDitemukanException(pesan);
         }
-    
+        list_pesanan.remove(pesan);
         return false;
     }
  
@@ -74,14 +74,14 @@ public class DatabasePesanan
      * @param Pesanan pesan     data pesanan yang akan dihapus dalam database.
      * @return true   menandakan penghapusan pesanan berhasil dilakukan.
      */
-   public static boolean hapusPesanan(Pesanan pesan)
+   public static boolean hapusPesanan(Pelanggan pengguna) throws PesananOlehPelangganDitemukanException
    {
-        if(pesan.getPelayan()== null)
+       Pesanan pesan = getPesanan(pengguna);
+       if(pesan.getPelayan()== null)
         {
-            return false;
+            list_pesanan.remove(pesan);
+            return true;
         }
-        
-        list_pesanan.remove(pesan);
-        return true;
+       throw new PesananOlehPelangganDitemukanException(pengguna);
    }
 }
