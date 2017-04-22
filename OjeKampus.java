@@ -9,6 +9,8 @@
 public class OjeKampus
 {
     // Single line comment : Variable Instance
+    public static SistemPengawas sistem;
+    
     public static Pelanggan p_chandra;
     public static Ojek ojek_yuda;
     public static DatabaseUser database;
@@ -90,36 +92,65 @@ public class OjeKampus
         {
             System.out.println(error.getMessage());
         }
-        /*
-        System.out.println("\n");
-        Administrasi.printAllDatabase();
-        
-        Administrasi.jalankanSistemPenugas();
-        Administrasi.jalankanSistemPenugas();
-        Administrasi.jalankanSistemPenugas();
-        System.out.println("\n");
-        Administrasi.printAllDatabase();
-        
-        Administrasi.pesananDibatalkan(pesanan1.getPelanggan());
-        Administrasi.pesananDibatalkan(pesanan2.getPelayan());
-        pesanan3.getPelayan().setStatus(StatusOjek.Antar);
-        System.out.println("\n");
-        Administrasi.printAllDatabase();
-        
-        Administrasi.pesananSelesai(pesanan3.getPelanggan());
-        //DatabasePesanan.hapusPesanan(pesanan3.getPelanggan());
-         try
-        {
-            DatabasePesanan.hapusPesanan(pelanggan3);
-        }
-        catch (PesananOlehPelangganDitemukanException error)
-        {
-            System.out.println(error.getMessage());
-        }
-        System.out.println("\n");
-        Administrasi.printAllDatabase();
-        */
-        
     }
+    
+    public static void antarBarang()
+    {
+    }
+    
+    public static void antarOrang()
+    {
+    }
+    
+    public static void ojekMembatalkan()
+    {
+    }
+    
+    public static void ojekMengubahStatus()
+    {
+    }
+    
+    public static void pembelianNrang()
+    {
+    }
+    
+    public static void penggunaMembatalkan()
+    {
+    }
+    
+    public static void penggunaMenghapusPesanan()
+    {
+    }
+    
+    public static void penggunaMenyelesaikanPesanan()
+    {
+    }
+    
+    public static void registrasiOjek()
+    {
+    }
+    
+    public static void registrasiPengguna()
+    {
+    }
+    
+    public static void startSistemPengawas(int waktu_cek)
+    {
+        SistemPengawas pengawas = new SistemPengawas("Yuda Chandra W", waktu_cek);
+        pengawas.start();
+    }
+    
+    public static void menungguSistem(int a)
+    {
+        try
+        {
+            Thread.sleep(a);
+        }
+        catch (InterruptedException e)
+        {
+            System.out.println("Sistem tidak menunggu");
+        }
+    }
+    
 }
 
