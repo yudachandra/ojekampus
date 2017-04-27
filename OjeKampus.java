@@ -37,7 +37,6 @@ public class OjeKampus
     public static void main(String args[])
     {
         //Modul 5 Tugas 4
-        System.out.println("\n");
         Lokasi lokasi_ojek1 = new Lokasi("Ps. Senen",01,02,"Ps. Rebo");
         Ojek ojek1 = new Ojek(1,"Ojek1", lokasi_ojek1);
         DatabaseUser.addOjek(ojek1);
@@ -92,6 +91,32 @@ public class OjeKampus
         {
             System.out.println(error.getMessage());
         }
+        
+        startSistemPengawas(100);
+        Administrasi.printAllDatabase();
+        menungguSistem(100);
+        menungguSistem(100);
+        menungguSistem(100);
+        
+        System.out.println("\n");
+        Administrasi.printAllDatabase();
+        
+        System.out.println("\n");
+        Administrasi.pesananDibatalkan(pesanan1.getPelanggan());
+        Administrasi.pesananDibatalkan(pesanan2.getPelayan());
+        pesanan3.getPelayan().setStatus(StatusOjek.Antar);
+        Administrasi.printAllDatabase();
+        
+        System.out.println("\n");
+        Administrasi.pesananSelesai(pesanan3.getPelanggan());
+        try{
+            DatabasePesanan.hapusPesanan(pesanan3.getPelanggan());
+            //DatabasePesanan.hapusPesanan(pesanan3.getPelanggan());
+        }catch(PesananOlehPelangganDitemukanException error4){
+            System.out.print(error4.getMessage());
+        }
+        Administrasi.printAllDatabase();
+        
     }
     
     public static void antarBarang()
@@ -136,7 +161,7 @@ public class OjeKampus
     
     public static void startSistemPengawas(int waktu_cek)
     {
-        SistemPengawas pengawas = new SistemPengawas("Yuda Chandra W", waktu_cek);
+        SistemPengawas pengawas = new SistemPengawas("Thread", waktu_cek);
         pengawas.start();
     }
     

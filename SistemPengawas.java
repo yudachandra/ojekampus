@@ -51,7 +51,7 @@ public class SistemPengawas implements Runnable
       System.out.println("Starting " +  threadName );
       if (t == null) 
       {
-         t = new Thread (this, threadName);
+         t = new Thread (this);
          t.start ();
       }
     }
