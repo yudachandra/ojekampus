@@ -18,8 +18,8 @@ import javax.swing.*;
 public class OjekGUI extends JFrame {
 
  private JMenuBar menuBar;
- private JButton button1;
- private JButton button2;
+ private JButton buttonregist;
+ private JButton buttonlogin;
  private JLabel label1;
 
  //Constructor 
@@ -37,23 +37,39 @@ public class OjekGUI extends JFrame {
   contentPane.setBackground(new Color(192,192,192));
 
 
-  button1 = new JButton();
-  button1.setBounds(68,96,120,35);
-  button1.setBackground(new Color(214,217,223));
-  button1.setForeground(new Color(0,0,0));
-  button1.setEnabled(true);
-  button1.setFont(new Font("SansSerif",0,16));
-  button1.setText("Registrasi");
-  button1.setVisible(true);
+  buttonregist = new JButton();
+  buttonregist.setBounds(68,96,120,35);
+  buttonregist.setBackground(new Color(214,217,223));
+  buttonregist.setForeground(new Color(0,0,0));
+  buttonregist.setEnabled(true);
+  buttonregist.setFont(new Font("SansSerif",0,16));
+  buttonregist.setText("Registrasi");
+  buttonregist.setVisible(true);
+  buttonregist.addActionListener(new ActionListener()
+  {
+      public void actionPerformed(ActionEvent e)
+      {
+          new RegistOjekGUI();
+      }
+        
+  });
 
-  button2 = new JButton();
-  button2.setBounds(68,163,120,35);
-  button2.setBackground(new Color(214,217,223));
-  button2.setForeground(new Color(0,0,0));
-  button2.setEnabled(true);
-  button2.setFont(new Font("SansSerif",0,16));
-  button2.setText("Log-in");
-  button2.setVisible(true);
+  buttonlogin = new JButton();
+  buttonlogin.setBounds(68,163,120,35);
+  buttonlogin.setBackground(new Color(214,217,223));
+  buttonlogin.setForeground(new Color(0,0,0));
+  buttonlogin.setEnabled(true);
+  buttonlogin.setFont(new Font("SansSerif",0,16));
+  buttonlogin.setText("Log-in");
+  buttonlogin.setVisible(true);
+  buttonlogin.addActionListener(new ActionListener()
+  {
+      public void actionPerformed(ActionEvent e)
+      {
+          new OjekLoginGUI();
+      }
+        
+  });
 
   label1 = new JLabel();
   label1.setBounds(100,30,90,35);
@@ -65,8 +81,8 @@ public class OjekGUI extends JFrame {
   label1.setVisible(true);
 
   //adding components to contentPane panel
-  contentPane.add(button1);
-  contentPane.add(button2);
+  contentPane.add(buttonregist);
+  contentPane.add(buttonlogin);
   contentPane.add(label1);
 
   //adding panel to JFrame and seting of window position and close operation

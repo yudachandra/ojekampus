@@ -26,6 +26,17 @@ public abstract class User
     }
     
     /**
+     * Constructor for objects of class User
+     */
+    public User(String telefon, String email, Date dob)
+    {
+        // initialise instance variables
+       this.telefon=telefon;
+       this.email=email;
+       this.dob=dob;
+    }
+    
+    /**
      * getID. 
      * Metode yang akan mengembalikan nilai id pelanggan ketika dipanggil.
      * @return int id   nilai id pelanggan.

@@ -11,14 +11,19 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.awt.event.FocusListener;
+import java.awt.event.FocusEvent;
 import javax.swing.border.Border;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.*;
 
 
 public class RegistOjekGUI extends JFrame {
 
  private JMenuBar menuBar;
- private JButton button1;
+ private JButton buttonregist;
  private JLabel label1;
  private JLabel label2;
  private JLabel label3;
@@ -26,15 +31,15 @@ public class RegistOjekGUI extends JFrame {
  private JLabel label5;
  private JLabel label6;
  private JLabel label7;
- private JTextField textfield1;
- private JTextField textfield2;
- private JTextField textfield3;
- private JTextField textfield4;
- private JTextField textfield5;
- private JTextField textfield6;
- private JTextField textfield7;
- private JTextField textfield8;
- private JTextField textfield9;
+ private JTextField namaojek;
+ private JTextField notelp;
+ private JTextField email;
+ private JTextField dob;
+ private JTextField noplat;
+ private JTextField xlokasi;
+ private JTextField ylokasi;
+ private JTextField namalokasi;
+ private JTextField ketlokasi;
 
  //Constructor 
  public RegistOjekGUI(){
@@ -51,14 +56,44 @@ public class RegistOjekGUI extends JFrame {
   contentPane.setBackground(new Color(192,192,192));
 
 
-  button1 = new JButton();
-  button1.setBounds(95,370,90,35);
-  button1.setBackground(new Color(214,217,223));
-  button1.setForeground(new Color(0,0,0));
-  button1.setEnabled(true);
-  button1.setFont(new Font("sansserif",0,12));
-  button1.setText("Registrasi");
-  button1.setVisible(true);
+  buttonregist = new JButton();
+  buttonregist.setBounds(95,370,90,35);
+  buttonregist.setBackground(new Color(214,217,223));
+  buttonregist.setForeground(new Color(0,0,0));
+  buttonregist.setEnabled(true);
+  buttonregist.setFont(new Font("sansserif",0,12));
+  buttonregist.setText("Registrasi");
+  buttonregist.setVisible(true);
+  buttonregist.addActionListener(new ActionListener()
+  {
+            @Override
+            public void actionPerformed(ActionEvent e){
+               try {
+                            DateFormat sourceFormat = new SimpleDateFormat("dd/MM/yyyy");
+                            String dateAsString = dob.getText();
+                            Date date = sourceFormat.parse(dateAsString);
+                            DatabaseUser.addOjek(new Ojek(
+                                DatabaseUser.getIDPelangganTerakhir(),
+                                namaojek.getText(),
+                                new Lokasi(
+                                    namalokasi.getText(),
+                                    Integer.parseInt(xlokasi.getText()),
+                                    Integer.parseInt(ylokasi.getText()),
+                                    ketlokasi.getText()
+                                        )));
+                            DatabaseUser.addOjek(new Ojek(
+                                notelp.getText(),
+                                email.getText(),
+                                date
+                                    )
+                                );
+                            JOptionPane.showMessageDialog(null, "Registrasi Berhasil", "Registrasi Berhasil", JOptionPane.INFORMATION_MESSAGE);
+                        } catch(java.text.ParseException | NumberFormatException exception) {
+                            JOptionPane.showMessageDialog(null, exception.getMessage(), "Registrasi Gagal", JOptionPane.ERROR_MESSAGE);
+                        }
+                }
+            }
+        );
 
   label1 = new JLabel();
   label1.setBounds(104,21,150,35);
@@ -123,89 +158,207 @@ public class RegistOjekGUI extends JFrame {
   label7.setText("Lokasi");
   label7.setVisible(true);
 
-  textfield1 = new JTextField();
-  textfield1.setBounds(95,80,150,35);
-  textfield1.setBackground(new Color(255,255,255));
-  textfield1.setForeground(new Color(0,0,0));
-  textfield1.setEnabled(true);
-  textfield1.setFont(new Font("sansserif",0,12));
-  textfield1.setText("Nama");
-  textfield1.setVisible(true);
+  namaojek = new JTextField();
+  namaojek.setBounds(95,80,150,35);
+  namaojek.setBackground(new Color(255,255,255));
+  namaojek.setForeground(new Color(0,88,0));
+  namaojek.setEnabled(true);
+  namaojek.setFont(new Font("sansserif",0,12));
+  namaojek.setText("Nama");
+  namaojek.setVisible(true);
+  namaojek.addFocusListener(new FocusListener()
+  {
+      @Override
+      public void focusGained(FocusEvent klik)
+      {
+          namaojek.setText("");
+      }
+      
+      @Override
+      public void focusLost(FocusEvent klik)
+      {
+      }
+  });
+  
 
-  textfield2 = new JTextField();
-  textfield2.setBounds(95,120,150,35);
-  textfield2.setBackground(new Color(255,255,255));
-  textfield2.setForeground(new Color(0,0,0));
-  textfield2.setEnabled(true);
-  textfield2.setFont(new Font("sansserif",0,12));
-  textfield2.setText("082xxxx");
-  textfield2.setVisible(true);
+  notelp = new JTextField();
+  notelp.setBounds(95,120,150,35);
+  notelp.setBackground(new Color(255,255,255));
+  notelp.setForeground(new Color(0,88,0));
+  notelp.setEnabled(true);
+  notelp.setFont(new Font("sansserif",0,12));
+  notelp.setText("0812345678");
+  notelp.setVisible(true);
+  notelp.addFocusListener(new FocusListener()
+  {
+      @Override
+      public void focusGained(FocusEvent klik)
+      {
+          notelp.setText("");
+      }
+      
+      @Override
+      public void focusLost(FocusEvent klik)
+      {
+      }
+  });
 
-  textfield3 = new JTextField();
-  textfield3.setBounds(95,160,150,35);
-  textfield3.setBackground(new Color(255,255,255));
-  textfield3.setForeground(new Color(0,0,0));
-  textfield3.setEnabled(true);
-  textfield3.setFont(new Font("sansserif",0,12));
-  textfield3.setText("example@ex.com");
-  textfield3.setVisible(true);
+  email = new JTextField();
+  email.setBounds(95,160,150,35);
+  email.setBackground(new Color(255,255,255));
+  email.setForeground(new Color(0,88,0));
+  email.setEnabled(true);
+  email.setFont(new Font("sansserif",0,12));
+  email.setText("example@ex.com");
+  email.setVisible(true);
+  email.addFocusListener(new FocusListener()
+  {
+      @Override
+      public void focusGained(FocusEvent klik)
+      {
+          email.setText("");
+      }
+      
+      @Override
+      public void focusLost(FocusEvent klik)
+      {
+      }
+  });
 
-  textfield4 = new JTextField();
-  textfield4.setBounds(95,200,150,35);
-  textfield4.setBackground(new Color(255,255,255));
-  textfield4.setForeground(new Color(0,0,0));
-  textfield4.setEnabled(true);
-  textfield4.setFont(new Font("sansserif",0,12));
-  textfield4.setText("dd/MM/yyyy");
-  textfield4.setVisible(true);
+  dob = new JTextField();
+  dob.setBounds(95,200,150,35);
+  dob.setBackground(new Color(255,255,255));
+  dob.setForeground(new Color(0,88,0));
+  dob.setEnabled(true);
+  dob.setFont(new Font("sansserif",0,12));
+  dob.setText("dd/MM/yyyy");
+  dob.setVisible(true);
+  dob.addFocusListener(new FocusListener()
+  {
+      @Override
+      public void focusGained(FocusEvent klik)
+      {
+          dob.setText("");
+      }
+      
+      @Override
+      public void focusLost(FocusEvent klik)
+      {
+      }
+  });
 
-  textfield5 = new JTextField();
-  textfield5.setBounds(95,240,150,35);
-  textfield5.setBackground(new Color(255,255,255));
-  textfield5.setForeground(new Color(0,0,0));
-  textfield5.setEnabled(true);
-  textfield5.setFont(new Font("SansSerif",0,12));
-  textfield5.setText("Bxx3xA");
-  textfield5.setVisible(true);
+  noplat = new JTextField();
+  noplat.setBounds(95,240,150,35);
+  noplat.setBackground(new Color(255,255,255));
+  noplat.setForeground(new Color(0,88,0));
+  noplat.setEnabled(true);
+  noplat.setFont(new Font("SansSerif",0,12));
+  noplat.setText("B3201TIX");
+  noplat.setVisible(true);
+  noplat.addFocusListener(new FocusListener()
+  {
+      @Override
+      public void focusGained(FocusEvent klik)
+      {
+          noplat.setText("");
+      }
+      
+      @Override
+      public void focusLost(FocusEvent klik)
+      {
+      }
+  });
 
-  textfield6 = new JTextField();
-  textfield6.setBounds(95,280,30,35);
-  textfield6.setBackground(new Color(255,255,255));
-  textfield6.setForeground(new Color(0,0,0));
-  textfield6.setEnabled(true);
-  textfield6.setFont(new Font("sansserif",0,12));
-  textfield6.setText("x");
-  textfield6.setVisible(true);
+  xlokasi = new JTextField();
+  xlokasi.setBounds(95,280,30,35);
+  xlokasi.setBackground(new Color(255,255,255));
+  xlokasi.setForeground(new Color(0,88,0));
+  xlokasi.setEnabled(true);
+  xlokasi.setFont(new Font("sansserif",0,12));
+  xlokasi.setText("X");
+  xlokasi.setVisible(true);
+  xlokasi.addFocusListener(new FocusListener()
+  {
+      @Override
+      public void focusGained(FocusEvent klik)
+      {
+          xlokasi.setText("");
+      }
+      
+      @Override
+      public void focusLost(FocusEvent klik)
+      {
+      }
+  });
 
-  textfield7 = new JTextField();
-  textfield7.setBounds(160,280,30,35);
-  textfield7.setBackground(new Color(255,255,255));
-  textfield7.setForeground(new Color(0,0,0));
-  textfield7.setEnabled(true);
-  textfield7.setFont(new Font("sansserif",0,12));
-  textfield7.setText("y");
-  textfield7.setVisible(true);
+  ylokasi = new JTextField();
+  ylokasi.setBounds(160,280,30,35);
+  ylokasi.setBackground(new Color(255,255,255));
+  ylokasi.setForeground(new Color(0,88,0));
+  ylokasi.setEnabled(true);
+  ylokasi.setFont(new Font("sansserif",0,12));
+  ylokasi.setText("Y");
+  ylokasi.setVisible(true);
+  ylokasi.addFocusListener(new FocusListener()
+  {
+      @Override
+      public void focusGained(FocusEvent klik)
+      {
+          ylokasi.setText("");
+      }
+      
+      @Override
+      public void focusLost(FocusEvent klik)
+      {
+      }
+  });
 
-  textfield8 = new JTextField();
-  textfield8.setBounds(95,320,90,35);
-  textfield8.setBackground(new Color(255,255,255));
-  textfield8.setForeground(new Color(0,0,0));
-  textfield8.setEnabled(true);
-  textfield8.setFont(new Font("sansserif",0,12));
-  textfield8.setText("Nama Lokasi");
-  textfield8.setVisible(true);
+  namalokasi = new JTextField();
+  namalokasi.setBounds(95,320,90,35);
+  namalokasi.setBackground(new Color(255,255,255));
+  namalokasi.setForeground(new Color(0,88,0));
+  namalokasi.setEnabled(true);
+  namalokasi.setFont(new Font("sansserif",0,12));
+  namalokasi.setText("Nama Lokasi");
+  namalokasi.setVisible(true);
+  namalokasi.addFocusListener(new FocusListener()
+  {
+      @Override
+      public void focusGained(FocusEvent klik)
+      {
+          namalokasi.setText("");
+      }
+      
+      @Override
+      public void focusLost(FocusEvent klik)
+      {
+      }
+  });
 
-  textfield9 = new JTextField();
-  textfield9.setBounds(190,320,90,35);
-  textfield9.setBackground(new Color(255,255,255));
-  textfield9.setForeground(new Color(0,0,0));
-  textfield9.setEnabled(true);
-  textfield9.setFont(new Font("sansserif",0,12));
-  textfield9.setText("Keterangan");
-  textfield9.setVisible(true);
+  ketlokasi = new JTextField();
+  ketlokasi.setBounds(190,320,90,35);
+  ketlokasi.setBackground(new Color(255,255,255));
+  ketlokasi.setForeground(new Color(0,88,0));
+  ketlokasi.setEnabled(true);
+  ketlokasi.setFont(new Font("sansserif",0,12));
+  ketlokasi.setText("Keterangan");
+  ketlokasi.setVisible(true);
+  ketlokasi.addFocusListener(new FocusListener()
+  {
+      @Override
+      public void focusGained(FocusEvent klik)
+      {
+          ketlokasi.setText("");
+      }
+      
+      @Override
+      public void focusLost(FocusEvent klik)
+      {
+      }
+  });
 
   //adding components to contentPane panel
-  contentPane.add(button1);
+  contentPane.add(buttonregist);
   contentPane.add(label1);
   contentPane.add(label2);
   contentPane.add(label3);
@@ -213,15 +366,15 @@ public class RegistOjekGUI extends JFrame {
   contentPane.add(label5);
   contentPane.add(label6);
   contentPane.add(label7);
-  contentPane.add(textfield1);
-  contentPane.add(textfield2);
-  contentPane.add(textfield3);
-  contentPane.add(textfield4);
-  contentPane.add(textfield5);
-  contentPane.add(textfield6);
-  contentPane.add(textfield7);
-  contentPane.add(textfield8);
-  contentPane.add(textfield9);
+  contentPane.add(namaojek);
+  contentPane.add(notelp);
+  contentPane.add(email);
+  contentPane.add(dob);
+  contentPane.add(noplat);
+  contentPane.add(xlokasi);
+  contentPane.add(ylokasi);
+  contentPane.add(namalokasi);
+  contentPane.add(ketlokasi);
 
   //adding panel to JFrame and seting of window position and close operation
   this.add(contentPane);

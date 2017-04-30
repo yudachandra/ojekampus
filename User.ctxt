@@ -1,8 +1,9 @@
 #BlueJ class context
-comment0.target=User
-comment0.text=\r\n\ Abstract\ class\ User\ -\ write\ a\ description\ of\ the\ class\ here\r\n\r\n\ @author\ Yuda\ Chandra\ Wiguna\r\n\ @version\ 8\ April\ 2017\r\n
-comment1.params=id\ nama
-comment1.target=User(int,\ java.lang.String)
+comment0.params=id\ nama
+comment0.target=User(int,\ java.lang.String)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ User\r\n
+comment1.params=telefon\ email\ dob
+comment1.target=User(java.lang.String,\ java.lang.String,\ java.util.Date)
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ User\r\n
 comment10.params=telefon
 comment10.target=void\ setTelefon(java.lang.String)

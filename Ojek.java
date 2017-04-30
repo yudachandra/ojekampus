@@ -16,6 +16,9 @@ public class Ojek extends User
     private Lokasi posisi_Sekarang;
     private Pesanan pesanan_sekarang=null;
     private String no_plat;
+    private String telefon;
+    private String email;
+    private Date dob;
     
     /**
      * Ojek Constructor
@@ -28,6 +31,18 @@ public class Ojek extends User
     {
         super (id, nama);
         this.posisi_Sekarang=posisi_Sekarang;
+    }
+    
+    /**
+     * Ojek Constructor
+     *
+     * @param id - nomor id ojek
+     * @param nama - nama ojek
+     * @param posisiSekarang posisi ojek saat ini
+     */
+    public Ojek(String telefon, String email, Date dob)
+    {
+        super (telefon, email, dob);
     }
     
     /**
