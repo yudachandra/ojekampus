@@ -11,6 +11,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.awt.event.FocusListener;
+import java.awt.event.FocusEvent;
 import javax.swing.border.Border;
 import javax.swing.*;
 
@@ -18,15 +20,16 @@ import javax.swing.*;
 public class TungguGUI extends JFrame {
 
  private JMenuBar menuBar;
- private JButton button1;
+ private JButton enterbutton;
  private JButton button2;
- private JButton button3;
- private JButton button4;
+ private JButton declinebutton;
+ private JButton deletebutton;
  private JLabel label1;
  private JLabel label2;
- private JLabel label3;
- private JTextField textfield1;
- private JTextField textfield2;
+ private JLabel infopesanan;
+ private JTextField textnoid;
+ private JTextField textstatus;
+ int idPelanggan = -1;
 
  //Constructor 
  public TungguGUI(){
@@ -43,14 +46,46 @@ public class TungguGUI extends JFrame {
   contentPane.setBackground(new Color(192,192,192));
 
 
-  button1 = new JButton();
-  button1.setBounds(231,65,90,35);
-  button1.setBackground(new Color(214,217,223));
-  button1.setForeground(new Color(0,0,0));
-  button1.setEnabled(true);
-  button1.setFont(new Font("sansserif",0,12));
-  button1.setText("Enter");
-  button1.setVisible(true);
+  enterbutton = new JButton();
+  enterbutton.setBounds(231,65,90,35);
+  enterbutton.setBackground(new Color(214,217,223));
+  enterbutton.setForeground(new Color(0,0,0));
+  enterbutton.setEnabled(true);
+  enterbutton.setFont(new Font("sansserif",0,12));
+  enterbutton.setText("Enter");
+  enterbutton.setVisible(true);
+  enterbutton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if(
+                    !textnoid.getText().equals("")
+                ){
+                    if(
+                        !textnoid.getText().equals("ID")
+                    ){
+                        try {
+                            if(DatabaseUser.getUserPelanggan(Integer.parseInt(textnoid.getText())) == null)
+                                JOptionPane.showMessageDialog(null, "ID tidak ditemukan", "alert", JOptionPane.WARNING_MESSAGE);
+                            else{
+                                idPelanggan = Integer.parseInt(textnoid.getText());
+                                if(DatabasePesanan.getPesanan(DatabaseUser.getUserPelanggan(idPelanggan)) == null)
+                                    throw new PesananTidakDitemukanException(DatabasePesanan.getPesanan(DatabaseUser.getUserPelanggan(idPelanggan)));
+                                else {
+                                    infopesanan.setText("Dipesan Oleh : " + DatabasePesanan.getPesanan(DatabaseUser.getUserPelanggan(idPelanggan)).getPelanggan().getNama() + "Dilayani Oleh : " + DatabasePesanan.getPesanan(DatabaseUser.getUserPelanggan(idPelanggan)).getPelayan().getNama());
+                                    //statusPesananText.setText(DatabasePesanan.getPesanan(DatabaseUser.getUserPelanggan(idPelanggan)).getFinalStatus());
+                                }
+                            }
+                        } catch(NumberFormatException | PesananTidakDitemukanException exception){
+                            JOptionPane.showMessageDialog(null, "ID merupakan angka", "alert", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ID harus diisi", "alert", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "ID tidak boleh kosong", "alert", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
 
   button2 = new JButton();
   button2.setBounds(80,200,90,35);
@@ -61,23 +96,42 @@ public class TungguGUI extends JFrame {
   button2.setText("Accept");
   button2.setVisible(true);
 
-  button3 = new JButton();
-  button3.setBounds(180,200,90,35);
-  button3.setBackground(new Color(214,217,223));
-  button3.setForeground(new Color(0,0,0));
-  button3.setEnabled(true);
-  button3.setFont(new Font("sansserif",0,12));
-  button3.setText("Decline");
-  button3.setVisible(true);
+  declinebutton = new JButton();
+  declinebutton.setBounds(180,200,90,35);
+  declinebutton.setBackground(new Color(214,217,223));
+  declinebutton.setForeground(new Color(0,0,0));
+  declinebutton.setEnabled(true);
+  declinebutton.setFont(new Font("sansserif",0,12));
+  declinebutton.setText("Decline");
+  declinebutton.setVisible(true);
+  declinebutton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if(idPelanggan != -1)
+                    Administrasi.pesananDibatalkan(DatabaseUser.getUserPelanggan(idPelanggan));
+            }
+        });
 
-  button4 = new JButton();
-  button4.setBounds(130,240,90,35);
-  button4.setBackground(new Color(214,217,223));
-  button4.setForeground(new Color(0,0,0));
-  button4.setEnabled(true);
-  button4.setFont(new Font("sansserif",0,12));
-  button4.setText("Delete");
-  button4.setVisible(true);
+  deletebutton = new JButton();
+  deletebutton.setBounds(130,240,90,35);
+  deletebutton.setBackground(new Color(214,217,223));
+  deletebutton.setForeground(new Color(0,0,0));
+  deletebutton.setEnabled(true);
+  deletebutton.setFont(new Font("sansserif",0,12));
+  deletebutton.setText("Delete");
+  deletebutton.setVisible(true);
+  deletebutton.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if(idPelanggan != -1){
+                    try {
+                        DatabasePesanan.hapusPesanan(DatabaseUser.getUserPelanggan(idPelanggan));
+                    } catch(PesananOlehPelangganTidakDitemukanException exception) {
+                        System.out.println(exception.getMessage());
+                    }
+                    }
+           }
+        });
 
   label1 = new JLabel();
   label1.setBounds(130,25,170,31);
@@ -97,43 +151,69 @@ public class TungguGUI extends JFrame {
   label2.setText("ID          :");
   label2.setVisible(true);
 
-  label3 = new JLabel();
-  label3.setBounds(130,120,146,34);
-  label3.setBackground(new Color(214,217,223));
-  label3.setForeground(new Color(0,0,0));
-  label3.setEnabled(true);
-  label3.setFont(new Font("SansSerif",0,14));
-  label3.setText("Informasi Pesanan");
-  label3.setVisible(true);
+  infopesanan = new JLabel();
+  infopesanan.setBounds(130,120,146,34);
+  infopesanan.setBackground(new Color(214,217,223));
+  infopesanan.setForeground(new Color(0,0,0));
+  infopesanan.setEnabled(true);
+  infopesanan.setFont(new Font("SansSerif",0,14));
+  infopesanan.setText("Informasi Pesanan");
+  infopesanan.setVisible(true);
 
-  textfield1 = new JTextField();
-  textfield1.setBounds(130,65,90,35);
-  textfield1.setBackground(new Color(255,255,255));
-  textfield1.setForeground(new Color(0,0,0));
-  textfield1.setEnabled(true);
-  textfield1.setFont(new Font("sansserif",0,12));
-  textfield1.setText("No ID");
-  textfield1.setVisible(true);
+  textnoid = new JTextField();
+  textnoid.setBounds(130,65,90,35);
+  textnoid.setBackground(new Color(255,255,255));
+  textnoid.setForeground(new Color(0,88,0));
+  textnoid.setEnabled(true);
+  textnoid.setFont(new Font("sansserif",0,12));
+  textnoid.setText("No ID");
+  textnoid.setVisible(true);
+  textnoid.addFocusListener(new FocusListener()
+  {
+    @Override
+    public void focusGained(FocusEvent klik)
+    {
+         textnoid.setText("");
+    }
+            
+    @Override
+    public void focusLost(FocusEvent klik)
+    {
+    }
+  });
 
-  textfield2 = new JTextField();
-  textfield2.setBounds(130,160,90,35);
-  textfield2.setBackground(new Color(255,255,255));
-  textfield2.setForeground(new Color(0,0,0));
-  textfield2.setEnabled(true);
-  textfield2.setFont(new Font("sansserif",0,12));
-  textfield2.setText("Status");
-  textfield2.setVisible(true);
+  textstatus = new JTextField();
+  textstatus.setBounds(130,160,90,35);
+  textstatus.setBackground(new Color(255,255,255));
+  textstatus.setForeground(new Color(0,88,0));
+  textstatus.setEnabled(true);
+  textstatus.setFont(new Font("sansserif",0,12));
+  textstatus.setText("Status");
+  textstatus.setVisible(true);
+  textstatus.addFocusListener(new FocusListener()
+  {
+    @Override
+    public void focusGained(FocusEvent klik)
+    {
+         textstatus.setText("");
+    }
+            
+    @Override
+    public void focusLost(FocusEvent klik)
+    {
+    }
+  });
 
   //adding components to contentPane panel
-  contentPane.add(button1);
+  contentPane.add(enterbutton);
   contentPane.add(button2);
-  contentPane.add(button3);
-  contentPane.add(button4);
+  contentPane.add(declinebutton);
+  contentPane.add(deletebutton);
   contentPane.add(label1);
   contentPane.add(label2);
-  contentPane.add(label3);
-  contentPane.add(textfield1);
-  contentPane.add(textfield2);
+  contentPane.add(infopesanan);
+  contentPane.add(textnoid);
+  contentPane.add(textstatus);
 
   //adding panel to JFrame and seting of window position and close operation
   this.add(contentPane);

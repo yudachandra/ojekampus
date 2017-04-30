@@ -11,6 +11,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.awt.event.FocusListener;
+import java.awt.event.FocusEvent;
 import javax.swing.border.Border;
 import javax.swing.*;
 
@@ -18,14 +20,15 @@ import javax.swing.*;
 public class OjekLoginGUI extends JFrame {
 
  private JMenuBar menuBar;
- private JButton button1;
- private JButton button2;
- private JButton button3;
+ private JButton enter;
+ private JButton decline;
+ private JButton accept;
  private JLabel label1;
  private JLabel label2;
- private JLabel label3;
- private JTextField textfield1;
- private JTextField textfield2;
+ private JLabel infopesanan;
+ private JTextField textstatus;
+ private JTextField textnoid;
+ int idOjek;
 
  //Constructor 
  public OjekLoginGUI(){
@@ -42,32 +45,76 @@ public class OjekLoginGUI extends JFrame {
   contentPane.setBackground(new Color(192,192,192));
 
 
-  button1 = new JButton();
-  button1.setBounds(298,110,90,35);
-  button1.setBackground(new Color(214,217,223));
-  button1.setForeground(new Color(0,0,0));
-  button1.setEnabled(true);
-  button1.setFont(new Font("sansserif",0,12));
-  button1.setText("Enter");
-  button1.setVisible(true);
+  enter = new JButton();
+  enter.setBounds(298,110,90,35);
+  enter.setBackground(new Color(214,217,223));
+  enter.setForeground(new Color(0,0,0));
+  enter.setEnabled(true);
+  enter.setFont(new Font("sansserif",0,12));
+  enter.setText("Enter");
+  enter.setVisible(true);
+  enter.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if(
+                    !textstatus.getText().equals("")
+                ){
+                    if(
+                        !textstatus.getText().equals("ID")
+                    ){
+                        try {
+                            if(DatabaseUser.getUserOjek(Integer.parseInt(textstatus.getText())) == null)
+                                JOptionPane.showMessageDialog(null, "ID tidak ditemukan", "alert", JOptionPane.WARNING_MESSAGE);
+                            else {
+                                idOjek = Integer.parseInt(textstatus.getText());
+                                textstatus.setText(DatabaseUser.getUserOjek(idOjek).getStatus().toString());
+                                if(DatabaseUser.getUserOjek(idOjek).getPesanan() == null)
+                                    throw new PesananOlehOjekTidakDitemukanException(DatabaseUser.getUserOjek(idOjek));
+                                else {    
+                                    infopesanan.setText("Dipesan Oleh : " + DatabaseUser.getUserOjek(idOjek).getPesanan().getPelanggan().getNama() + "Tipe Layanan : " + DatabaseUser.getUserOjek(idOjek).getPesanan().getTipeLayanan());
+                                }
+                            }
+                        } catch(NumberFormatException | PesananOlehOjekTidakDitemukanException exception){
+                            JOptionPane.showMessageDialog(null, exception.getMessage(), "alert", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "ID harus diisi", "alert", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "ID tidak boleh kosong", "alert", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
 
-  button2 = new JButton();
-  button2.setBounds(268,288,90,35);
-  button2.setBackground(new Color(214,217,223));
-  button2.setForeground(new Color(0,0,0));
-  button2.setEnabled(true);
-  button2.setFont(new Font("sansserif",0,12));
-  button2.setText("Decline");
-  button2.setVisible(true);
-
-  button3 = new JButton();
-  button3.setBounds(102,288,90,35);
-  button3.setBackground(new Color(214,217,223));
-  button3.setForeground(new Color(0,0,0));
-  button3.setEnabled(true);
-  button3.setFont(new Font("sansserif",0,12));
-  button3.setText("Accept");
-  button3.setVisible(true);
+  decline = new JButton();
+  decline.setBounds(268,288,90,35);
+  decline.setBackground(new Color(214,217,223));
+  decline.setForeground(new Color(0,0,0));
+  decline.setEnabled(true);
+  decline.setFont(new Font("sansserif",0,12));
+  decline.setText("Decline");
+  decline.setVisible(true);
+  decline.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                Administrasi.pesananDibatalkan(DatabaseUser.getUserOjek(idOjek));
+            }
+        });
+  
+  accept = new JButton();
+  accept.setBounds(102,288,90,35);
+  accept.setBackground(new Color(214,217,223));
+  accept.setForeground(new Color(0,0,0));
+  accept.setEnabled(true);
+  accept.setFont(new Font("sansserif",0,12));
+  accept.setText("Accept");
+  accept.setVisible(true);
+  accept.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                System.out.println();
+            }
+        });
 
   label1 = new JLabel();
   label1.setBounds(176,38,120,35);
@@ -87,42 +134,69 @@ public class OjekLoginGUI extends JFrame {
   label2.setText("ID               :");
   label2.setVisible(true);
 
-  label3 = new JLabel();
-  label3.setBounds(172,183,118,31);
-  label3.setBackground(new Color(214,217,223));
-  label3.setForeground(new Color(0,0,0));
-  label3.setEnabled(true);
-  label3.setFont(new Font("sansserif",0,12));
-  label3.setText("Informasi Pesanan");
-  label3.setVisible(true);
+  infopesanan = new JLabel();
+  infopesanan.setBounds(172,183,118,31);
+  infopesanan.setBackground(new Color(214,217,223));
+  infopesanan.setForeground(new Color(0,0,0));
+  infopesanan.setEnabled(true);
+  infopesanan.setFont(new Font("sansserif",0,12));
+  infopesanan.setText("Informasi Pesanan");
+  infopesanan.setVisible(true);
 
-  textfield1 = new JTextField();
-  textfield1.setBounds(161,230,130,35);
-  textfield1.setBackground(new Color(255,255,255));
-  textfield1.setForeground(new Color(0,255,0));
-  textfield1.setEnabled(true);
-  textfield1.setFont(new Font("sansserif",0,12));
-  textfield1.setText("Status");
-  textfield1.setVisible(true);
+  textstatus = new JTextField();
+  textstatus.setBounds(161,230,130,35);
+  textstatus.setBackground(new Color(255,255,255));
+  textstatus.setForeground(new Color(0,88,0));
+  textstatus.setEnabled(true);
+  textstatus.setFont(new Font("sansserif",0,12));
+  textstatus.setText("Status");
+  textstatus.setVisible(true);
+  textstatus.addFocusListener(new FocusListener()
+  {
+    @Override
+    public void focusGained(FocusEvent klik)
+    {
+         textstatus.setText("");
+    }
+            
+    @Override
+    public void focusLost(FocusEvent klik)
+    {
+    }
+  });
 
-  textfield2 = new JTextField();
-  textfield2.setBounds(134,110,130,35);
-  textfield2.setBackground(new Color(255,255,255));
-  textfield2.setForeground(new Color(0,255,0));
-  textfield2.setEnabled(true);
-  textfield2.setFont(new Font("sansserif",0,12));
-  textfield2.setText("No ID");
-  textfield2.setVisible(true);
+
+  textnoid = new JTextField();
+  textnoid.setBounds(134,110,130,35);
+  textnoid.setBackground(new Color(255,255,255));
+  textnoid.setForeground(new Color(0,88,0));
+  textnoid.setEnabled(true);
+  textnoid.setFont(new Font("sansserif",0,12));
+  textnoid.setText("No ID");
+  textnoid.setVisible(true);
+  textnoid.addFocusListener(new FocusListener()
+  {
+    @Override
+    public void focusGained(FocusEvent klik)
+    {
+         textnoid.setText("");
+    }
+            
+    @Override
+    public void focusLost(FocusEvent klik)
+    {
+    }
+  });
 
   //adding components to contentPane panel
-  contentPane.add(button1);
-  contentPane.add(button2);
-  contentPane.add(button3);
+  contentPane.add(enter);
+  contentPane.add(decline);
+  contentPane.add(accept);
   contentPane.add(label1);
   contentPane.add(label2);
-  contentPane.add(label3);
-  contentPane.add(textfield1);
-  contentPane.add(textfield2);
+  contentPane.add(infopesanan);
+  contentPane.add(textstatus);
+  contentPane.add(textnoid);
 
   //adding panel to JFrame and seting of window position and close operation
   this.add(contentPane);

@@ -74,7 +74,7 @@ public class DatabasePesanan
      * @param Pesanan pesan     data pesanan yang akan dihapus dalam database.
      * @return true   menandakan penghapusan pesanan berhasil dilakukan.
      */
-   public static boolean hapusPesanan(Pelanggan pengguna) throws PesananOlehPelangganDitemukanException
+   public static boolean hapusPesanan(Pelanggan pengguna) throws PesananOlehPelangganTidakDitemukanException
    {
        Pesanan pesan = getPesanan(pengguna);
        if(pesan.getPelayan()== null)
@@ -82,6 +82,6 @@ public class DatabasePesanan
             list_pesanan.remove(pesan);
             return true;
         }
-       throw new PesananOlehPelangganDitemukanException(pengguna);
+       throw new PesananOlehPelangganTidakDitemukanException(pengguna);
    }
 }

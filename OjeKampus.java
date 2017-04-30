@@ -112,7 +112,7 @@ public class OjeKampus
         try{
             DatabasePesanan.hapusPesanan(pesanan3.getPelanggan());
             //DatabasePesanan.hapusPesanan(pesanan3.getPelanggan());
-        }catch(PesananOlehPelangganDitemukanException error4){
+        }catch(PesananOlehPelangganTidakDitemukanException error4){
             System.out.print(error4.getMessage());
         }
         Administrasi.printAllDatabase();
